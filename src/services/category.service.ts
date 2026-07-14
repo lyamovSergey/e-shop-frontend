@@ -22,7 +22,7 @@ class CategoryService {
 	}
 
 	async getById(id: string) {
-		const { data } = await axiosWithAuth<ICategory[]>({
+		const { data } = await axiosWithAuth<ICategory>({
 			url: API_URL.categories(`/by-id/${id}`),
 			method: 'GET'
 		})
@@ -30,7 +30,7 @@ class CategoryService {
 	}
 
 	async create(data: ICategoryInput, storeId: string) {
-		const { data: createdCategory } = await axiosWithAuth<ICategory[]>({
+		const { data: createdCategory } = await axiosWithAuth<ICategory>({
 			url: API_URL.categories(`/${storeId}`),
 			method: 'POST',
 			data
@@ -39,7 +39,7 @@ class CategoryService {
 	}
 
 	async update(id: string, data: ICategoryInput) {
-		const { data: updatedCategory } = await axiosWithAuth<ICategory[]>({
+		const { data: updatedCategory } = await axiosWithAuth<ICategory>({
 			url: API_URL.categories(`/${id}`),
 			method: 'PUT',
 			data
@@ -48,7 +48,7 @@ class CategoryService {
 	}
 
 	async delete(id: string) {
-		const { data: deletedCategory } = await axiosWithAuth<ICategory[]>({
+		const { data: deletedCategory } = await axiosWithAuth<ICategory>({
 			url: API_URL.categories(`/${id}`),
 			method: 'DELETE'
 		})
