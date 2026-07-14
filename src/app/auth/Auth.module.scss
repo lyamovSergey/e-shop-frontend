@@ -1,0 +1,10 @@
+@reference "../globals.css";
+.wrapper {
+	@apply min-h-screen grid grid-cols-1 lg:grid-cols-2;
+	> .left {
+		@apply h-full bg-blue-600 hidden lg:flex items-center justify-center;
+	}
+	> .right {
+		@apply flex items-center justify-center;
+	}
+}
