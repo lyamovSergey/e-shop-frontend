@@ -8,6 +8,6 @@ export const metadata: Metadata = {
 	title: 'Title from store page',
 	...NO_INDEX_PAGE
 }
-export default function AuthPage() {
+export default function StorePage() {
 	return <Store />
 }

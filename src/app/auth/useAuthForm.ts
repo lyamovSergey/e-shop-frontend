@@ -5,7 +5,7 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import * as z from 'zod'
 
-import { PUBLIC_URL } from '@/config/url.config'
+import { DASHBOARD_URL, PUBLIC_URL } from '@/config/url.config'
 
 import { authService } from '@/services/auth/auth.service'
 
@@ -41,7 +41,7 @@ export function useAuthForm(isReg: boolean) {
 		onSuccess() {
 			form.reset()
 			toast.success('Auth Success!')
-			router.replace(PUBLIC_URL.home())
+			router.replace(DASHBOARD_URL.home())
 		},
 		onError(error) {
 			if (error.message) {

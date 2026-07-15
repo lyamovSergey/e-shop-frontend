@@ -1,0 +1,4 @@
+@reference "#app.css";
+.wrapper {
+	@apply flex flex-col w-full border-2 border-blue-500;
+}
