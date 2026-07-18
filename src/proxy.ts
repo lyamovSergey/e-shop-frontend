@@ -5,17 +5,18 @@ import { EnumTokens, getAccessToken } from './services/auth/auth-token.service'
 
 export function proxy(request: NextRequest) {
 	// const refreshToken = request.cookies.get(EnumTokens.REFRESH_TOKEN)?.value
-	const refreshToken = getAccessToken()
+	const accessToken = request.cookies.get(EnumTokens.ACCESS_TOKEN)?.value
 
-	const isAuthPage = request.url.includes(PUBLIC_URL.auth())
+	// const isAuthPage = request.url.includes(PUBLIC_URL.auth())
+	const isAuthPage = request.nextUrl.pathname.startsWith(PUBLIC_URL.auth())
 
 	if (isAuthPage) {
-		if (refreshToken) {
+		if (accessToken) {
 			return NextResponse.redirect(new URL(PUBLIC_URL.home(), request.url))
 		}
 		return NextResponse.next()
 	}
-	if (refreshToken === undefined) {
+	if (!accessToken) {
 		return NextResponse.redirect(new URL(PUBLIC_URL.auth(), request.url))
 	}
 	return NextResponse.next()
