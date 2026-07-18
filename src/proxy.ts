@@ -1,10 +1,11 @@
 import { type NextRequest, NextResponse } from 'next/server'
 
 import { PUBLIC_URL } from './config/url.config'
-import { EnumTokens } from './services/auth/auth-token.service'
+import { EnumTokens, getAccessToken } from './services/auth/auth-token.service'
 
 export function proxy(request: NextRequest) {
-	const refreshToken = request.cookies.get(EnumTokens.REFRESH_TOKEN)?.value
+	// const refreshToken = request.cookies.get(EnumTokens.REFRESH_TOKEN)?.value
+	const refreshToken = getAccessToken()
 
 	const isAuthPage = request.url.includes(PUBLIC_URL.auth())
 
