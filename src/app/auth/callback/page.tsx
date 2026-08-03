@@ -1,9 +1,11 @@
+import { Suspense } from 'react'
+
 import OAuthCallback from '@/app/auth/callback/OAuthCallback'
 
 export default function CallbackPage() {
 	return (
-		<div>
+		<Suspense fallback={null}>
 			<OAuthCallback />
-		</div>
+		</Suspense>
 	)
 }
