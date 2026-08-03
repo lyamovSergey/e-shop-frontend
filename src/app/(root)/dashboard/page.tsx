@@ -13,9 +13,7 @@ export const metadata: Metadata = {
 export default function DashboardPage() {
 	return (
 		<div>
-			<Suspense fallback={null}>
-				<Dashboard />
-			</Suspense>
+			<Dashboard />
 		</div>
 	)
 }
