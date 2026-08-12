@@ -10,5 +10,8 @@
 				@apply size-5;
 			}
 		}
+		.active {
+			@apply text-blue-500 bg-blue-200/20 drop-shadow-sm;
+		}
 	}
 }

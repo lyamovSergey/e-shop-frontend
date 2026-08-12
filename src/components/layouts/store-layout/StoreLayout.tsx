@@ -1,7 +1,7 @@
 import type { PropsWithChildren } from 'react'
 
 import styles from './StoreLayout.module.scss'
-import Header from './header/Header'
+import { Header } from './header/Header'
 import { Sidebar } from './sidebar/Sidebar'
 
 export function StoreLayout({ children }: PropsWithChildren<unknown>) {
