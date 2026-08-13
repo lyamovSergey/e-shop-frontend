@@ -10,8 +10,6 @@ import {
 
 import { IMonthlySales } from '@/shared/types/statistics.interface'
 
-import { formatPrice } from '@/utils/string/format-price'
-
 import styles from './MiddleStatistics.module.scss'
 
 interface OverviewProps {
@@ -25,7 +23,13 @@ const chartConfig = {
 	}
 } satisfies ChartConfig
 export function Overview({ data }: OverviewProps) {
-	console.log('data::: ', data)
+	// const testData = Array.from({ length: 20 }, (_, index) => ({
+	// 	date: `${20 - index}-Aug-2026`,
+	// 	value: Math.floor(Math.random() * 50000) + 30000
+	// }))
+
+	// data = testData
+
 	return (
 		<Card>
 			<CardHeader className={styles.header}>
@@ -44,14 +48,22 @@ export function Overview({ data }: OverviewProps) {
 						<CartesianGrid vertical={false} />
 						<XAxis
 							dataKey='date'
-							tickLine={false}
+							tickLine={true}
 							axisLine={false}
 							tickMargin={8}
+							reversed={true}
+							interval={data.length <= 4 ? 0 : 'preserveStartEnd'}
+							padding={{ left: 30, right: 30 }}
 						/>
 						<ChartTooltip
 							content={
 								<ChartTooltipContent
-									labelFormatter={n => formatPrice(n)}
+									// formatter={(val, name) => (
+									// 	<>
+									// 		<div className=''>{name}</div>
+									// 		<div className=''>{formatPrice(val as number)}</div>
+									// 	</>
+									// )}
 									indicator='line'
 								/>
 							}
