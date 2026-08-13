@@ -1,6 +1,6 @@
 'use client'
 import { ChevronsUpDown, Plus, StoreIcon } from 'lucide-react'
-import { useRouter } from 'next/navigation'
+import { useParams, useRouter } from 'next/navigation'
 import { useState } from 'react'
 
 import { Button } from '@/components/ui/button'
@@ -24,11 +24,14 @@ import { STORE_URL } from '@/config/url.config'
 
 import { IStore } from '@/shared/types/store.interface'
 
+import { cn } from '@/lib/utils'
+
 interface StoreSwitcherProps {
 	items: IStore[]
 }
 export function StoreSwitcher({ items }: StoreSwitcherProps) {
 	const router = useRouter()
+	const params = useParams<{ storeId: string }>()
 	const [isOpen, setIsOpen] = useState(false)
 
 	const onStoreSelect = (storeId: string) => {
@@ -48,7 +51,7 @@ export function StoreSwitcher({ items }: StoreSwitcherProps) {
 						className='w-52'
 					>
 						<StoreIcon className='mr-2 size-4' />
-						Current Store
+						My Stores
 						<ChevronsUpDown className='ml-auto size-4 shrink-0 opacity-50' />
 					</Button>
 				}
@@ -63,7 +66,9 @@ export function StoreSwitcher({ items }: StoreSwitcherProps) {
 								<CommandItem
 									key={store.id}
 									onSelect={() => onStoreSelect(store.id)}
-									className='text-sm'
+									className={cn('text-sm', {
+										'bg-blue-500 text-white': store.id == params.storeId
+									})}
 								>
 									<StoreIcon className='mr-2 size-4' />
 									<div className='line-clamp-1'>{store.title}</div>
