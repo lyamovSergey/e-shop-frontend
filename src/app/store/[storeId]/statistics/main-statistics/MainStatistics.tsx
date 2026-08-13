@@ -1,4 +1,3 @@
-'use client'
 import { MainStatisticsSkeletonItem } from '@/app/store/[storeId]/statistics/main-statistics/MainStatisticsSkeletonItem'
 
 import { useGetStatistics } from '@/hooks/queries/statistics/useGetStatistics'

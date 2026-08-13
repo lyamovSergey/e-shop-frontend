@@ -1,12 +1,6 @@
-'use client'
 import CountUp from 'react-countup'
 
-import {
-	Card,
-	CardContent,
-	CardHeader,
-	CardTitle
-} from '@/components/ui/form-elements/card'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 
 import { IMainStatistics } from '@/shared/types/statistics.interface'
 

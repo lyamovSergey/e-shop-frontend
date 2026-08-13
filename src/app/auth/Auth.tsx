@@ -10,7 +10,7 @@ import {
 	CardDescription,
 	CardHeader,
 	CardTitle
-} from '@/components/ui/form-elements/card'
+} from '@/components/ui/card'
 import {
 	Field,
 	FieldDescription,
