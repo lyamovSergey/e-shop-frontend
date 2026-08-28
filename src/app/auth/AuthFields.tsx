@@ -13,8 +13,8 @@ import {
 	FieldError,
 	FieldGroup,
 	FieldLabel
-} from '@/components/ui/form-elements/field'
-import { Input } from '@/components/ui/form-elements/input'
+} from '@/components/ui/field'
+import { Input } from '@/components/ui/input'
 
 import { IAuthForm } from '@/shared/types/auth.interface'
 

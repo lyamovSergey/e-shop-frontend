@@ -14,12 +14,8 @@ import {
 	DialogTitle,
 	DialogTrigger
 } from '@/components/ui/dialog'
-import {
-	Field,
-	FieldError,
-	FieldLabel
-} from '@/components/ui/form-elements/field'
-import { Input } from '@/components/ui/form-elements/input'
+import { Field, FieldError, FieldLabel } from '@/components/ui/field'
+import { Input } from '@/components/ui/input'
 
 import { useCreateStore } from '@/hooks/queries/stores/useCreateStore'
 

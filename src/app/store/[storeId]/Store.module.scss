@@ -2,4 +2,7 @@
 
 .wrapper {
 	@apply p-6;
+	.content {
+		@apply pt-10;
+	}
 }

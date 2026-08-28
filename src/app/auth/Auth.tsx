@@ -11,11 +11,7 @@ import {
 	CardHeader,
 	CardTitle
 } from '@/components/ui/card'
-import {
-	Field,
-	FieldDescription,
-	FieldGroup
-} from '@/components/ui/form-elements/field'
+import { Field, FieldDescription, FieldGroup } from '@/components/ui/field'
 
 import styles from './Auth.module.scss'
 import { AuthFields } from './AuthFields'

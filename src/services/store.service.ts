@@ -31,7 +31,7 @@ class StoreService {
 	}
 	async update(id: string, data: IStoreEdit) {
 		const { data: updatedStore } = await axiosWithAuth<IStore>({
-			url: API_URL.stores(`/${id}`),
+			url: API_URL.stores(`/update/${id}`),
 			method: 'PUT',
 			data
 		})
