@@ -1,0 +1,24 @@
+@reference '#app.css';
+
+.search {
+	@apply flex items-center py-4;
+}
+
+.table {
+	@apply overflow-hidden rounded-md border;
+}
+.loading {
+	@apply max-w-screen-2xl mx-auto w-full;
+	.heading {
+		@apply h-8 w-48;
+	}
+	.search {
+		@apply h-8 w-72 mt-6;
+	}
+	.table {
+		@apply mt-6;
+		.loader_wrapper {
+			@apply h-130 w-full items-center justify-center flex;
+		}
+	}
+}
