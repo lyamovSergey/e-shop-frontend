@@ -24,7 +24,7 @@ import styles from '../Store.module.scss'
 
 export function Products() {
 	const params = useParams<{ storeId: string }>()
-	const { products, isLoading } = useGetProducts()
+	const { products, isProductsLoading } = useGetProducts()
 
 	const formattedProducts: IProductColumn[] = products
 		? products.map(product => ({
@@ -39,7 +39,7 @@ export function Products() {
 
 	return (
 		<div className={styles.wrapper}>
-			{isLoading ? (
+			{isProductsLoading ? (
 				<DataTableLoading />
 			) : (
 				<>

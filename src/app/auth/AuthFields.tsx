@@ -1,21 +1,7 @@
-import { Controller, UseFormReturn } from 'react-hook-form'
+import { UseFormReturn } from 'react-hook-form'
 
-import {
-	Card,
-	CardContent,
-	CardDescription,
-	CardHeader,
-	CardTitle
-} from '@/components/ui/card'
-import {
-	Field,
-	FieldDescription,
-	FieldError,
-	FieldGroup,
-	FieldLabel
-} from '@/components/ui/field'
+import { FieldGroup } from '@/components/ui/field'
 import { FormTextInput } from '@/components/ui/form-fields/FormTextInput'
-import { Input } from '@/components/ui/input'
 
 import { IAuthForm } from '@/shared/types/auth.interface'
 

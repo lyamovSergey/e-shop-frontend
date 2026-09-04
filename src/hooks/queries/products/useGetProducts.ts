@@ -16,19 +16,8 @@ export function useGetProducts() {
 		queryFn: () => productService.getByStoreId(params.storeId)
 	})
 
-	const {
-		data: product,
-		isLoading: isProductLoading,
-		isFetching: isProductFetching
-	} = useQuery({
-		queryKey: ['get_product_by_id'],
-		queryFn: () => productService.getById(params.productId)
-	})
-
 	return {
 		products,
-		isProductsLoading: isProductsLoading || isProductsFetching,
-		product,
-		isProductLoading: isProductLoading || isProductFetching
+		isProductsLoading: isProductsLoading || isProductsFetching
 	}
 }

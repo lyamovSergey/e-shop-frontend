@@ -21,8 +21,5 @@ export function useDeleteStore() {
 			toast.error('Something went wrong :(')
 		}
 	})
-	return useMemo(
-		() => ({ deleteStore, isLoadingDelete }),
-		[deleteStore, isLoadingDelete]
-	)
+	return { deleteStore, isLoadingDelete }
 }

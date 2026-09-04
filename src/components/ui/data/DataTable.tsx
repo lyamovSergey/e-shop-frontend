@@ -26,12 +26,14 @@ interface DataTableProps<TData extends RowData> {
 	columns: ColumnDef<DataTableFeatures, TData>[]
 	data: TData[]
 	filterKey?: string
+	tableName?: string
 }
 
 export function DataTable<TData extends RowData>({
 	columns,
 	data,
-	filterKey
+	filterKey,
+	tableName = 'default'
 }: DataTableProps<TData>) {
 	const [sorting, setSorting] = useState<SortingState>([])
 	const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
@@ -64,13 +66,16 @@ export function DataTable<TData extends RowData>({
 				</div>
 			)}
 			<div className={styles.table}>
-				<Table>
+				<Table className={`table-${tableName}`}>
 					<TableHeader>
 						{table.getHeaderGroups().map(headerGroup => (
 							<TableRow key={headerGroup.id}>
-								{headerGroup.headers.map(header => {
+								{headerGroup.headers.map((header, index) => {
 									return (
-										<TableHead key={header.id}>
+										<TableHead
+											key={header.id}
+											className={`table-header-${tableName}-${index}`}
+										>
 											{header.isPlaceholder ? null : (
 												<table.FlexRender header={header} />
 											)}

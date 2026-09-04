@@ -26,8 +26,5 @@ export function useCreateStore() {
 			toast.error('Something went wrong :(')
 		}
 	})
-	return useMemo(
-		() => ({ createStore, isLoadingCreate }),
-		[createStore, isLoadingCreate]
-	)
+	return { createStore, isLoadingCreate }
 }

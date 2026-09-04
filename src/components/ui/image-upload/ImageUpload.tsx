@@ -26,7 +26,7 @@ export function ImageUpload({
 			<div className={styles.image_container}>
 				{value.map(url => (
 					<div className={styles.image_wrapper} key={url}>
-						<Image src={url} alt='Product image' fill />
+						<Image src={url} alt='Product image' fill sizes='200px' />
 					</div>
 				))}
 			</div>

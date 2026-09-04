@@ -30,12 +30,9 @@ export function useUpdateStore() {
 		}
 	})
 
-	return useMemo(
-		() => ({
-			store,
-			updateStore,
-			isLoadingUpdate
-		}),
-		[store, updateStore, isLoadingUpdate]
-	)
+	return {
+		store,
+		updateStore,
+		isLoadingUpdate
+	}
 }

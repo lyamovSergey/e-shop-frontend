@@ -11,5 +11,5 @@ export function useGetColors() {
 		queryFn: () => colorService.getByStoreId(params.storeId)
 	})
 
-	return useMemo(() => ({ colors, isLoading }), [colors, isLoading])
+	return { colors, isLoading }
 }

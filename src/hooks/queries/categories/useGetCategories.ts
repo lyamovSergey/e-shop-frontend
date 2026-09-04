@@ -11,5 +11,5 @@ export function useGetCategories() {
 		queryFn: () => categoryService.getByStoreId(params.storeId)
 	})
 
-	return useMemo(() => ({ categories, isLoading }), [categories, isLoading])
+	return { categories, isLoading }
 }

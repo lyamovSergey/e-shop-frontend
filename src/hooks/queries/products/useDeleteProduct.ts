@@ -27,8 +27,5 @@ export function useDeleteProduct() {
 		}
 	})
 
-	return useMemo(
-		() => ({ deleteProduct, isLoadingDelete }),
-		[deleteProduct, isLoadingDelete]
-	)
+	return { deleteProduct, isLoadingDelete }
 }
