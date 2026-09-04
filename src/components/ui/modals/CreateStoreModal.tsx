@@ -2,8 +2,7 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Plus } from 'lucide-react'
 import { type PropsWithChildren, useState } from 'react'
-import { Controller, SubmitHandler, useForm } from 'react-hook-form'
-import * as z from 'zod'
+import { SubmitHandler, useForm } from 'react-hook-form'
 
 import { Button } from '@/components/ui/button'
 import {
@@ -14,22 +13,18 @@ import {
 	DialogTitle,
 	DialogTrigger
 } from '@/components/ui/dialog'
-import { Field, FieldError, FieldLabel } from '@/components/ui/field'
-import { Input } from '@/components/ui/input'
+import { FormTextInput } from '@/components/ui/form-fields/FormTextInput'
 
 import { useCreateStore } from '@/hooks/queries/stores/useCreateStore'
 
+import { createStoreSchema } from '@/shared/schemas/createStore.schema'
 import { IStoreCreate } from '@/shared/types/store.interface'
-
-const storeTitleSchema = z.object({
-	title: z.string().min(1, 'Title is required')
-})
 
 export function CreateStoreModal({ children }: PropsWithChildren<unknown>) {
 	const [isOpen, setIsOpen] = useState(false)
 	const { createStore, isLoadingCreate } = useCreateStore()
 	const form = useForm<IStoreCreate>({
-		resolver: zodResolver(storeTitleSchema),
+		resolver: zodResolver(createStoreSchema),
 		mode: 'onChange'
 	})
 
@@ -53,26 +48,12 @@ export function CreateStoreModal({ children }: PropsWithChildren<unknown>) {
 					<DialogDescription>Set name to create store</DialogDescription>
 				</DialogHeader>
 				<form onSubmit={form.handleSubmit(onSubmit)} className='space-y-4'>
-					<Controller
-						name='title'
-						control={form.control}
-						defaultValue=''
-						render={({ field, fieldState }) => (
-							<Field>
-								<FieldLabel htmlFor='title'>Title</FieldLabel>
-								<Input
-									{...field}
-									id='title'
-									type='text'
-									placeholder='Store title'
-									autoComplete='off'
-									disabled={isLoadingCreate}
-								/>
-								{fieldState.invalid && (
-									<FieldError errors={[fieldState.error]} />
-								)}
-							</Field>
-						)}
+					<FormTextInput
+						form={form}
+						formField='title'
+						title='Store title'
+						placeholer='Enter store title'
+						disabled={isLoadingCreate}
 					/>
 					<div className='flex justify-end'>
 						<Button type='submit' variant='primary' disabled={isLoadingCreate}>

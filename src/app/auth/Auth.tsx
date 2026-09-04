@@ -55,7 +55,7 @@ export function Auth() {
 								<AuthFields form={form} isPending={isPending} isReg={isReg} />
 								<FieldGroup>
 									<Field>
-										<Button type='submit'>
+										<Button type='submit' disabled={isPending}>
 											{isReg ? 'Registration' : 'Login'}
 										</Button>
 										<Social isReg={isReg} />
@@ -66,6 +66,7 @@ export function Auth() {
 											<button
 												className=' hover:cursor-pointer underline'
 												type='button'
+
 												onClick={() => setIsReg(!isReg)}
 											>
 												{isReg ? 'Sign in' : 'Sign up'}

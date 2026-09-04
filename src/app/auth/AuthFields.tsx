@@ -14,6 +14,7 @@ import {
 	FieldGroup,
 	FieldLabel
 } from '@/components/ui/field'
+import { FormTextInput } from '@/components/ui/form-fields/FormTextInput'
 import { Input } from '@/components/ui/input'
 
 import { IAuthForm } from '@/shared/types/auth.interface'
@@ -33,70 +34,29 @@ export function AuthFields({
 		<>
 			<FieldGroup>
 				{isReg && (
-					<Controller
-						name='name'
-						control={form.control}
-						defaultValue=''
-						render={({ field, fieldState }) => (
-							<Field>
-								<FieldLabel htmlFor='email'>Name</FieldLabel>
-								<Input
-									{...field}
-									id='name'
-									type='text'
-									placeholder='Name'
-									autoComplete='off'
-								/>
-								{fieldState.invalid && (
-									<FieldError errors={[fieldState.error]} />
-								)}
-							</Field>
-						)}
+					<FormTextInput
+						form={form}
+						formField='name'
+						placeholer='Enter your name'
+						title='Name'
+						disabled={isPending}
 					/>
 				)}
-				<Controller
-					name='email'
-					control={form.control}
-					defaultValue=''
-					render={({ field, fieldState }) => (
-						<Field>
-							<FieldLabel htmlFor='email'>Email</FieldLabel>
-							<Input
-								{...field}
-								id='email'
-								type='email'
-								placeholder='m@example.com'
-								autoComplete='off'
-							/>
-							{fieldState.invalid && <FieldError errors={[fieldState.error]} />}
-						</Field>
-					)}
+				<FormTextInput
+					form={form}
+					formField='email'
+					placeholer='Enter your email'
+					title='Email'
+					type='email'
+					disabled={isPending}
 				/>
-				<Controller
-					name='password'
-					control={form.control}
-					defaultValue=''
-					render={({ field, fieldState }) => (
-						<Field>
-							<div className='flex items-center'>
-								<FieldLabel htmlFor='password'>Password</FieldLabel>
-								{/* <a
-									href='#'
-									className='ml-auto inline-block text-sm underline-offset-4 hover:underline'
-								>
-									Forgot your password?
-								</a> */}
-							</div>
-							<Input
-								id='password'
-								{...field}
-								type='password'
-								placeholder='*******'
-								autoComplete='off'
-							/>
-							{fieldState.invalid && <FieldError errors={[fieldState.error]} />}
-						</Field>
-					)}
+				<FormTextInput
+					form={form}
+					formField='password'
+					placeholer='Enter your passwrod'
+					title='Password'
+					type='password'
+					disabled={isPending}
 				/>
 			</FieldGroup>
 		</>

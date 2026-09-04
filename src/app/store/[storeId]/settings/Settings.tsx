@@ -2,11 +2,12 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Trash2Icon } from 'lucide-react'
 import { Controller, SubmitHandler, useForm } from 'react-hook-form'
-import * as z from 'zod'
 
 import { Heading } from '@/components/ui/Heading'
 import { Button } from '@/components/ui/button'
 import { Field, FieldError, FieldLabel } from '@/components/ui/field'
+import { FormTextAreaInput } from '@/components/ui/form-fields/FormTextAreaInput'
+import { FormTextInput } from '@/components/ui/form-fields/FormTextInput'
 import { Input } from '@/components/ui/input'
 import { ConfirmModal } from '@/components/ui/modals/ConfirmModal'
 import { Textarea } from '@/components/ui/textarea'
@@ -14,20 +15,19 @@ import { Textarea } from '@/components/ui/textarea'
 import { useDeleteStore } from '@/hooks/queries/stores/useDeleteStore'
 import { useUpdateStore } from '@/hooks/queries/stores/useUpdateStore'
 
+import { storeSettingSchema } from '@/shared/schemas/storeSettings.schema'
 import { IStoreEdit } from '@/shared/types/store.interface'
 
 import styles from '../Store.module.scss'
 
-const storeSchema = z.object({
-	title: z.string().min(1, 'Title is required'),
-	description: z.string()
-})
 export function Settings() {
 	const { store, updateStore, isLoadingUpdate } = useUpdateStore()
 	const { deleteStore, isLoadingDelete } = useDeleteStore()
 
+	const Disabled = isLoadingUpdate || isLoadingDelete
+
 	const form = useForm<IStoreEdit>({
-		resolver: zodResolver(storeSchema),
+		resolver: zodResolver(storeSettingSchema),
 		values: {
 			title: store?.title || '',
 			description: store?.description || ''
@@ -42,64 +42,41 @@ export function Settings() {
 	return (
 		<div className={styles.wrapper}>
 			<div className={styles.header}>
-				<div className=' flex justify-between'>
-					<Heading title='Settings' description='Manage store settings' />
-					<ConfirmModal
-						handleClick={deleteStore}
-						title='Del title'
-						text='Del text'
-						confirmButton='Delete'
+				<Heading title='Settings' description='Manage store settings' />
+				<ConfirmModal
+					handleClick={deleteStore}
+					title='Del title'
+					text='Del text'
+					confirmButton='Delete'
+				>
+					<Button
+						variant='destructive'
+						title='Delete Store'
+						disabled={Disabled}
 					>
-						<Button variant='destructive' disabled={isLoadingDelete}>
-							<Trash2Icon />
-						</Button>
-					</ConfirmModal>
-				</div>
+						<Trash2Icon />
+					</Button>
+				</ConfirmModal>
 			</div>
 			<div className={styles.content}>
 				<form onSubmit={form.handleSubmit(onSubmit)} className='space-y-4'>
-					<Controller
-						name='title'
-						control={form.control}
-						defaultValue=''
-						render={({ field, fieldState }) => (
-							<Field>
-								<FieldLabel htmlFor='title'>Title</FieldLabel>
-								<Input
-									{...field}
-									id='title'
-									type='text'
-									placeholder='Store title'
-									autoComplete='off'
-									disabled={isLoadingUpdate}
-								/>
-								{fieldState.invalid && (
-									<FieldError errors={[fieldState.error]} />
-								)}
-							</Field>
-						)}
+					<FormTextInput
+						form={form}
+						formField='title'
+						title='Store title'
+						placeholer='Enter store title'
+						disabled={Disabled}
 					/>
-					<Controller
-						name='description'
-						control={form.control}
-						defaultValue=''
-						render={({ field, fieldState }) => (
-							<Field>
-								<FieldLabel htmlFor='description'>Description</FieldLabel>
-								<Textarea
-									{...field}
-									id='description'
-									placeholder='Store description'
-									disabled={isLoadingUpdate}
-								/>
-								{fieldState.invalid && (
-									<FieldError errors={[fieldState.error]} />
-								)}
-							</Field>
-						)}
+
+					<FormTextAreaInput
+						form={form}
+						formField='description'
+						title='Store description'
+						placeholer='Enter store description'
+						disabled={Disabled}
 					/>
 					<div className='flex justify-end'>
-						<Button type='submit' variant='primary' disabled={isLoadingUpdate}>
+						<Button type='submit' variant='primary' disabled={Disabled}>
 							Update
 						</Button>
 					</div>

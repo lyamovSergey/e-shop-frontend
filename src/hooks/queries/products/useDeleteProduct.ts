@@ -7,7 +7,7 @@ import { STORE_URL } from '@/config/url.config'
 
 import { productService } from '@/services/product.service'
 
-export function useDeleteProducts() {
+export function useDeleteProduct() {
 	const params = useParams<{ storeId: string; productId: string }>()
 	const router = useRouter()
 	const queryClient = useQueryClient()

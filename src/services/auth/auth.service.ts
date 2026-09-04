@@ -7,15 +7,15 @@ import { IAuthForm, IAuthResponse } from '@/shared/types/auth.interface'
 import { removeTokenFromStorage, saveTokenStorage } from './auth-token.service'
 
 class AuthService {
-	async main(type: 'login' | 'register', data: IAuthForm) {
-		const response = await axiosClassic<IAuthResponse>({
+	async main(type: 'login' | 'register', authData: IAuthForm) {
+		const { data } = await axiosClassic<IAuthResponse>({
 			url: API_URL.auth(`/${type}`),
 			method: 'POST',
-			data
+			data: authData
 		})
 
-		if (response.data.accessToken) saveTokenStorage(response.data.accessToken)
-		return response
+		if (data.accessToken) saveTokenStorage(data.accessToken)
+		return data
 	}
 
 	async getNewTokens() {

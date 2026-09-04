@@ -17,7 +17,7 @@ export interface IProduct {
 
 export interface IProductInput extends Omit<
 	IProduct,
-	'id' | 'reviews' | 'store' | 'category' | 'color'
+	'id' | 'reviews' | 'store' | 'category' | 'color' | 'storeId'
 > {
 	categoryId: string
 	colorId: string

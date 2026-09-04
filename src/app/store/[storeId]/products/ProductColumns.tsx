@@ -1,6 +1,7 @@
 'use client'
 import { createColumnHelper } from '@tanstack/react-table'
-import { ArrowUpDown, MoreHorizontal } from 'lucide-react'
+import { ArrowUpDown, ExternalLink, MoreHorizontal, Pencil } from 'lucide-react'
+import Link from 'next/link'
 
 import { Button } from '@/components/ui/button'
 import { type DataTableFeatures } from '@/components/ui/data/data-table-features'
@@ -13,6 +14,8 @@ import {
 	DropdownMenuSeparator,
 	DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
+
+import { PUBLIC_URL, STORE_URL } from '@/config/url.config'
 
 export interface IProductColumn {
 	id: string
@@ -96,6 +99,7 @@ export const ProductColumns = columnHelper.columns([
 		id: 'actions',
 		header: () => <span className=' text-slate-500'>Actions</span>,
 		cell: ({ row }) => {
+			const ProductItem = row.original
 			return (
 				<DropdownMenu>
 					<DropdownMenuTrigger
@@ -103,11 +107,27 @@ export const ProductColumns = columnHelper.columns([
 					>
 						<MoreHorizontal className='h-4 w-4' />
 					</DropdownMenuTrigger>
-					<DropdownMenuContent align='end'>
+					<DropdownMenuContent align='end' className=' w-45'>
 						<DropdownMenuGroup>
 							<DropdownMenuLabel>Action</DropdownMenuLabel>
-							<DropdownMenuItem>Action 1</DropdownMenuItem>
-							<DropdownMenuItem>Action 2</DropdownMenuItem>
+							<Link href={PUBLIC_URL.product(ProductItem.id)} target='_blank'>
+								<DropdownMenuItem>
+									<ExternalLink className=' size-4 mr-2' />
+									Product detail
+								</DropdownMenuItem>
+							</Link>
+
+							<Link
+								href={STORE_URL.productEdit(
+									ProductItem.storeId,
+									ProductItem.id
+								)}
+							>
+								<DropdownMenuItem>
+									<Pencil className=' size-4 mr-2' />
+									Product Edit
+								</DropdownMenuItem>
+							</Link>
 						</DropdownMenuGroup>
 					</DropdownMenuContent>
 				</DropdownMenu>

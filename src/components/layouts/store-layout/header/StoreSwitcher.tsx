@@ -71,7 +71,9 @@ export function StoreSwitcher({ items }: StoreSwitcherProps) {
 									})}
 								>
 									<StoreIcon className='mr-2 size-4' />
-									<div className='line-clamp-1'>{store.title}</div>
+									<div title={store.title} className='line-clamp-1'>
+										{store.title}
+									</div>
 								</CommandItem>
 							))}
 						</CommandGroup>
@@ -79,12 +81,7 @@ export function StoreSwitcher({ items }: StoreSwitcherProps) {
 					<CommandSeparator />
 					<CommandList>
 						<CommandGroup>
-							<CreateStoreModal>
-								{/* <CommandItem className=''>
-									<Plus className='mr-2 size-4' />
-									Create store
-								</CommandItem> */}
-							</CreateStoreModal>
+							<CreateStoreModal></CreateStoreModal>
 						</CommandGroup>
 					</CommandList>
 				</Command>

@@ -3,24 +3,13 @@ import { useMutation } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
-import * as z from 'zod'
 
-import { DASHBOARD_URL, PUBLIC_URL } from '@/config/url.config'
+import { DASHBOARD_URL, STORE_URL } from '@/config/url.config'
 
 import { authService } from '@/services/auth/auth.service'
 
+import { loginSchema, registerSchema } from '@/shared/schemas/auth.schema'
 import { IAuthForm } from '@/shared/types/auth.interface'
-
-const loginSchema = z.object({
-	email: z.string().min(1, 'Email is required').email('Invalid email address'),
-	password: z.string().min(6, 'Password must contain at least 6 characters')
-})
-
-const registerSchema = z.object({
-	name: z.string().min(2, 'Name must contain at least 2 characters'),
-	email: z.string().min(1, 'Email is required').email('Invalid email address'),
-	password: z.string().min(6, 'Password must contain at least 6 characters')
-})
 
 export function useAuthForm(isReg: boolean) {
 	const formSchema = isReg ? registerSchema : loginSchema
@@ -38,10 +27,15 @@ export function useAuthForm(isReg: boolean) {
 		mutationKey: ['auth-user'],
 		mutationFn: (data: IAuthForm) =>
 			authService.main(isReg ? 'register' : 'login', data),
-		onSuccess() {
+		onSuccess(data) {
 			form.reset()
 			toast.success('Auth Success!')
-			router.replace(DASHBOARD_URL.home())
+			if (data.user.stores.length != 0) {
+				router.push(STORE_URL.home(data.user.stores[0].id))
+			} else {
+				// router.replace(DASHBOARD_URL.home())
+				router.push(DASHBOARD_URL.home())
+			}
 		},
 		onError(error) {
 			if (error.message) {
