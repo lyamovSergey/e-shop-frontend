@@ -1,14 +1,14 @@
 'use client'
 
 import { Plus } from 'lucide-react'
-import { useParams } from 'next/navigation'
-import { ViewTransition, useState } from 'react'
+import { useState } from 'react'
 
 import {
 	CategoryColumns,
 	type ICategoryColumn
 } from '@/app/store/[storeId]/categories/CategoryColumns'
 
+import { PageAnimation } from '@/components/layouts/PageAnimation'
 import { Heading } from '@/components/ui/Heading'
 import { Button } from '@/components/ui/button'
 import { DataTableLoading } from '@/components/ui/data/DataLoading'
@@ -52,7 +52,7 @@ export function Categories() {
 		if (type === 'edit') setIsOpenEdit(true)
 	}
 	return (
-		<ViewTransition enter='page-enter' exit='page-exit'>
+		<PageAnimation>
 			<div className={styles.wrapper}>
 				{isLoading ? (
 					<DataTableLoading />
@@ -94,6 +94,6 @@ export function Categories() {
 					</>
 				)}
 			</div>
-		</ViewTransition>
+		</PageAnimation>
 	)
 }

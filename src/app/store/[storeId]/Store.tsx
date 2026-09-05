@@ -1,4 +1,5 @@
 'use client'
+import { PageAnimation } from '@/components/layouts/PageAnimation'
 import { Heading } from '@/components/ui/Heading'
 
 import styles from './Store.module.scss'
@@ -7,10 +8,12 @@ import { MiddleStatistics } from './statistics/middle-statistics/MiddleStatistic
 
 export function Store() {
 	return (
-		<div className={styles.wrapper}>
-			<Heading title='Statistics' />
-			<MainStatistics />
-			<MiddleStatistics />
-		</div>
+		<PageAnimation>
+			<div className={styles.wrapper}>
+				<Heading title='Statistics' />
+				<MainStatistics />
+				<MiddleStatistics />
+			</div>
+		</PageAnimation>
 	)
 }

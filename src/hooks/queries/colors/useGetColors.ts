@@ -8,7 +8,8 @@ export function useGetColors() {
 	const params = useParams<{ storeId: string }>()
 	const { data: colors, isLoading } = useQuery({
 		queryKey: ['get_colors'],
-		queryFn: () => colorService.getByStoreId(params.storeId)
+		queryFn: () => colorService.getByStoreId(params.storeId),
+		staleTime: Infinity
 	})
 
 	return { colors, isLoading }

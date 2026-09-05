@@ -78,7 +78,7 @@ export function ProductForm({
 	return (
 		<div className={styles.wrapper}>
 			<div className={styles.header}>
-				<Heading title={Title} description={Description} />
+				<Heading title={Title} description={Description} hasBack={true} />
 				{product && (
 					<ConfirmModal
 						handleClick={deleteProduct}

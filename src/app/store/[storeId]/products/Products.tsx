@@ -2,13 +2,13 @@
 
 import { Plus } from 'lucide-react'
 import Link from 'next/link'
-import { ViewTransition } from 'react'
 
 import {
 	IProductColumn,
 	ProductColumns
 } from '@/app/store/[storeId]/products/ProductColumns'
 
+import { PageAnimation } from '@/components/layouts/PageAnimation'
 import { Heading } from '@/components/ui/Heading'
 import { Button } from '@/components/ui/button'
 import { DataTableLoading } from '@/components/ui/data/DataLoading'
@@ -40,7 +40,7 @@ export function Products({ storeId }: IProductsProps) {
 		: []
 
 	return (
-		<ViewTransition enter='page-enter' exit='page-exit'>
+		<PageAnimation>
 			<div className={styles.wrapper}>
 				{isProductsLoading ? (
 					<DataTableLoading />
@@ -55,7 +55,7 @@ export function Products({ storeId }: IProductsProps) {
 								<Link href={STORE_URL.productCreate(storeId)}>
 									<Button variant='primary'>
 										<Plus />
-										Create
+										Create Product
 									</Button>
 								</Link>
 							</div>
@@ -70,6 +70,6 @@ export function Products({ storeId }: IProductsProps) {
 					</>
 				)}
 			</div>
-		</ViewTransition>
+		</PageAnimation>
 	)
 }
