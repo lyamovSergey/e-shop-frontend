@@ -23,6 +23,9 @@ const nextConfig: NextConfig = {
 				destination: `${process.env.SERVER_URL}/uploads/:path*`
 			}
 		]
+	},
+	experimental: {
+		viewTransition: true
 	}
 }
 

@@ -81,6 +81,8 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  --duration-exit: 300ms;
+  --duration-enter: 1000ms;
 }
 
 .dark {
@@ -117,6 +119,22 @@
   --sidebar-ring: oklch(0.556 0 0);
 }
 
+@keyframes fade-in {
+  from { filter: blur(16px); opacity: 0; }
+  to { filter: blur(0); opacity: 1; }
+}
+@keyframes fade-out {
+  from { filter: blur(0); opacity: 1; }
+  to { filter: blur(16px); opacity: 0; }
+}
+
+::view-transition-old(.page-exit) {
+  animation: fade-out 400ms ease-out forwards;
+}
+::view-transition-new(.page-enter) {
+  animation: fade-in 400ms  ease-out forwards;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -129,4 +147,5 @@
     /* @apply font-sans; */
     /* font-family: var(--font-sans) sans-serif; */
   }
+  
 }

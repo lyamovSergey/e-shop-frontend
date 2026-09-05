@@ -1,4 +1,4 @@
-import { axiosWithAuth } from '@/api/api.interseptors'
+import { axiosWithAuth } from '@/api/api.client.interseptors'
 
 import { API_URL } from '@/config/api.config'
 

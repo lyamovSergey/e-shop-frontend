@@ -2,7 +2,7 @@
 
 import { Plus } from 'lucide-react'
 import { useParams } from 'next/navigation'
-import { useState } from 'react'
+import { ViewTransition, useState } from 'react'
 
 import {
 	CategoryColumns,
@@ -52,46 +52,48 @@ export function Categories() {
 		if (type === 'edit') setIsOpenEdit(true)
 	}
 	return (
-		<div className={styles.wrapper}>
-			{isLoading ? (
-				<DataTableLoading />
-			) : (
-				<>
-					<div className={styles.header}>
-						<Heading
-							title={`Categories (${categories?.length || 0})`}
-							description='All categories in your store'
-						/>
-						<div className={styles.buttons}>
-							<Button variant='primary' onClick={() => setIsOpenEdit(true)}>
-								<Plus />
-								Create Category
-							</Button>
+		<ViewTransition enter='page-enter' exit='page-exit'>
+			<div className={styles.wrapper}>
+				{isLoading ? (
+					<DataTableLoading />
+				) : (
+					<>
+						<div className={styles.header}>
+							<Heading
+								title={`Categories (${categories?.length || 0})`}
+								description='All categories in your store'
+							/>
+							<div className={styles.buttons}>
+								<Button variant='primary' onClick={() => setIsOpenEdit(true)}>
+									<Plus />
+									Create Category
+								</Button>
+							</div>
 						</div>
-					</div>
-					<div className={styles.table}>
-						<DataTable
-							columns={CategoryColumns(tableAction)}
-							data={formattedCategories}
-							filterKey='name'
-							tableName='categories'
+						<div className={styles.table}>
+							<DataTable
+								columns={CategoryColumns(tableAction)}
+								data={formattedCategories}
+								filterKey='name'
+								tableName='categories'
+							/>
+						</div>
+						<ConfirmModal
+							handleClick={delCategory}
+							open={openConfirm}
+							onOpenChange={setIsOpenConfirm}
+							onClose={() => setCheckedCategory(undefined)}
+							disabled={isLoadingDelete}
 						/>
-					</div>
-					<ConfirmModal
-						handleClick={delCategory}
-						open={openConfirm}
-						onOpenChange={setIsOpenConfirm}
-						onClose={() => setCheckedCategory(undefined)}
-						disabled={isLoadingDelete}
-					/>
-					<CreateCategoryModal
-						open={openEdit}
-						setIsOpen={setIsOpenEdit}
-						category={checkedCategory}
-						onClose={() => setCheckedCategory(undefined)}
-					/>
-				</>
-			)}
-		</div>
+						<CreateCategoryModal
+							open={openEdit}
+							setIsOpen={setIsOpenEdit}
+							category={checkedCategory}
+							onClose={() => setCheckedCategory(undefined)}
+						/>
+					</>
+				)}
+			</div>
+		</ViewTransition>
 	)
 }

@@ -2,7 +2,7 @@
 
 import { Plus } from 'lucide-react'
 import Link from 'next/link'
-import { useParams } from 'next/navigation'
+import { ViewTransition } from 'react'
 
 import {
 	IProductColumn,
@@ -22,9 +22,11 @@ import { formatPrice } from '@/utils/string/format-price'
 
 import styles from '../Store.module.scss'
 
-export function Products() {
-	const params = useParams<{ storeId: string }>()
-	const { products, isProductsLoading } = useGetProducts()
+interface IProductsProps {
+	storeId: string
+}
+export function Products({ storeId }: IProductsProps) {
+	const { products, isProductsLoading } = useGetProducts(storeId)
 
 	const formattedProducts: IProductColumn[] = products
 		? products.map(product => ({
@@ -38,34 +40,36 @@ export function Products() {
 		: []
 
 	return (
-		<div className={styles.wrapper}>
-			{isProductsLoading ? (
-				<DataTableLoading />
-			) : (
-				<>
-					<div className={styles.header}>
-						<Heading
-							title={`Products (${products?.length || 0})`}
-							description='All products in your store'
-						/>
-						<div className={styles.buttons}>
-							<Link href={STORE_URL.productCreate(params.storeId)}>
-								<Button variant='primary'>
-									<Plus />
-									Create
-								</Button>
-							</Link>
+		<ViewTransition enter='page-enter' exit='page-exit'>
+			<div className={styles.wrapper}>
+				{isProductsLoading ? (
+					<DataTableLoading />
+				) : (
+					<>
+						<div className={styles.header}>
+							<Heading
+								title={`Products (${products?.length || 0})`}
+								description='All products in your store'
+							/>
+							<div className={styles.buttons}>
+								<Link href={STORE_URL.productCreate(storeId)}>
+									<Button variant='primary'>
+										<Plus />
+										Create
+									</Button>
+								</Link>
+							</div>
 						</div>
-					</div>
-					<div className={styles.table}>
-						<DataTable
-							columns={ProductColumns}
-							data={formattedProducts}
-							filterKey='title'
-						/>
-					</div>
-				</>
-			)}
-		</div>
+						<div className={styles.table}>
+							<DataTable
+								columns={ProductColumns}
+								data={formattedProducts}
+								filterKey='title'
+							/>
+						</div>
+					</>
+				)}
+			</div>
+		</ViewTransition>
 	)
 }
