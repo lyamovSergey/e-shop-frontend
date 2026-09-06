@@ -24,60 +24,53 @@ export function Auth() {
 	const { onSubmit, form, isPending } = useAuthForm(isReg)
 	return (
 		<div className={styles.wrapper}>
-			<div className={styles.left}>
-				<Image
-					src='/images/auth.svg'
-					alt='e-shop auth'
-					width={100}
-					height={70}
-					className='h-17.5'
-					priority
-				/>
-			</div>
-			<div className={styles.right}>
-				<div className={cn('flex flex-col gap-6 min-w-95')}>
-					<Card>
-						<CardHeader>
-							<CardTitle>
-								{isReg ? 'Registration' : 'Login to your account'}
-							</CardTitle>
-							<CardDescription>
-								{isReg
-									? 'Enter your info to create account'
-									: 'Enter your email below to login to your account'}
-							</CardDescription>
-						</CardHeader>
-						<CardContent>
-							<form
-								className='flex flex-col gap-6'
-								onSubmit={form.handleSubmit(onSubmit)}
-							>
-								<AuthFields form={form} isPending={isPending} isReg={isReg} />
-								<FieldGroup>
-									<Field>
-										<Button type='submit' disabled={isPending}>
-											{isReg ? 'Registration' : 'Login'}
-										</Button>
-										<Social isReg={isReg} />
-										<FieldDescription className='text-center'>
-											{isReg
-												? 'Alredy have account? '
-												: `Don't have an account? `}
-											<button
-												className=' hover:cursor-pointer underline'
-												type='button'
+			<div className={cn('flex flex-col gap-6 min-w-85')}>
+				<div className='neo-base'></div>
+				<Card>
+					<CardHeader>
+						<CardTitle>
+							{isReg ? 'Registration' : 'Login to your account'}
+						</CardTitle>
+						<CardDescription>
+							{isReg
+								? 'Enter your info to create account'
+								: 'Enter your email below to login to your account'}
+						</CardDescription>
+					</CardHeader>
+					<CardContent>
+						<form
+							className='flex flex-col gap-6'
+							onSubmit={form.handleSubmit(onSubmit)}
+						>
+							<AuthFields form={form} isPending={isPending} isReg={isReg} />
+							<FieldGroup>
+								<Field>
+									<Button
+										type='submit'
+										variant='neoAction'
+										disabled={isPending}
+									>
+										{isReg ? 'Registration' : 'Login'}
+									</Button>
+									<Social isReg={isReg} />
+									<FieldDescription className='text-center'>
+										{isReg
+											? 'Alredy have account? '
+											: `Don't have an account? `}
+										<button
+											className=' hover:cursor-pointer underline'
+											type='button'
 
-												onClick={() => setIsReg(!isReg)}
-											>
-												{isReg ? 'Sign in' : 'Sign up'}
-											</button>
-										</FieldDescription>
-									</Field>
-								</FieldGroup>
-							</form>
-						</CardContent>
-					</Card>
-				</div>
+											onClick={() => setIsReg(!isReg)}
+										>
+											{isReg ? 'Sign in' : 'Sign up'}
+										</button>
+									</FieldDescription>
+								</Field>
+							</FieldGroup>
+						</form>
+					</CardContent>
+				</Card>
 			</div>
 		</div>
 	)

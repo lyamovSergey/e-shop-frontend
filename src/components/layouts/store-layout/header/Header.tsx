@@ -11,11 +11,12 @@ import { DASHBOARD_URL } from '@/config/url.config'
 import { useProfile } from '@/hooks/useProfile'
 
 import styles from './Header.module.scss'
+import { cn } from '@/lib/utils'
 
 export function Header() {
 	const { user, isLoading } = useProfile()
 	return (
-		<div className={styles.header}>
+		<div className={cn('neo-base', styles.header)}>
 			<MobileSidebar />
 			<div className={styles.header_menu}>
 				{isLoading ? (

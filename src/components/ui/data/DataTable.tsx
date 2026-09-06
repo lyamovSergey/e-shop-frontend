@@ -65,7 +65,7 @@ export function DataTable<TData extends RowData>({
 					/>
 				</div>
 			)}
-			<div className={styles.table}>
+			<div className='neo-base rounded-lg'>
 				<Table className={`table-${tableName}`}>
 					<TableHeader>
 						{table.getHeaderGroups().map(headerGroup => (

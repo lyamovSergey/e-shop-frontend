@@ -5,13 +5,13 @@
 	.navigation {
 		@apply flex flex-col w-full space-y-3;
 		.navLink {
-			@apply flex items-center gap-x-3 text-slate-500 text-sm font-medium py-2.5 px-3 rounded-lg hover:bg-blue-200/20 hover:text-blue-500 hover:drop-shadow-sm bg-transparent transition-all duration-200;
+			@apply flex items-center gap-x-3 text-slate-500 text-sm font-medium py-2.5 px-3 rounded-lg  hover:text-blue-500  transition-all duration-200;
 			svg {
 				@apply size-5;
 			}
 		}
 		.active {
-			@apply text-blue-500 bg-blue-200/20 drop-shadow-sm;
+			@apply text-blue-500 bg-blue-200/20;
 		}
 	}
 }

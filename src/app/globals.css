@@ -5,7 +5,7 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --color-background: var(--background);
+  --color-background: var(--nue-white-1);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-sans);
   --font-mono: var(--font-geist-mono);
@@ -46,6 +46,7 @@
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
+  
 }
 
 :root {
@@ -83,6 +84,44 @@
   --sidebar-ring: oklch(0.708 0 0);
   --duration-exit: 300ms;
   --duration-enter: 1000ms;
+  --nue-white-1: #f0f0f3;
+	--nue-white-2: #eee;
+	--neu-blue-gray-400: #728ab7;
+	--neu-blue-gray-700: #2b3951;
+	--neu-blue-gray-600: #415273;
+	--neu-blue-gray-500: #596e95;
+	--neu-blue-gray-300: #d2e2ff;
+	--neu-blue-gray-200: #f2f5fa;
+	--neu-gray-400: #808b9f;
+	--neu-gray-700: #2c2d30;
+	--neu-gray-600: #39404e;
+	--neu-gray-500: #5b6577;
+	--neu-gray-300: #dde3ed;
+	--neu-gray-200: #f4f5f7;
+	--neu-lime-400: #83dbd6;
+	--neu-lime-700: #3c7571;
+	--neu-lime-600: #529793;
+	--neu-lime-500: #6ab9b4;
+	--neu-lime-300: #ccfbf8;
+	--neu-lime-200: #e3fffd;
+	--neu-pink-400: #fb7575;
+	--neu-pink-700: #a33d3d;
+	--neu-pink-600: #c04e4e;
+	--neu-pink-500: #de6161;
+	--neu-pink-300: #ffa0a0;
+	--neu-pink-200: #ffc8c8;
+	--neu-violet-400: #c590ef;
+	--neu-violet-700: #422956;
+	--neu-violet-600: #6c4889;
+	--neu-violet-500: #986abc;
+	--neu-violet-300: #e1c2f8;
+	--neu-violet-200: #faf5ff;
+	--neu-purple-400: #745ff2;
+	--neu-purple-700: #1c1259;
+	--neu-purple-600: #34258c;
+	--neu-purple-500: #513fbf;
+	--neu-purple-300: #b5aaff;
+	--neu-purple-200: #f1efff;
 }
 
 .dark {
@@ -143,9 +182,27 @@
     @apply bg-background text-foreground;
     font-family: var(--font-sans) sans-serif;
   }
-  html {
-    /* @apply font-sans; */
-    /* font-family: var(--font-sans) sans-serif; */
-  }
+  /* html {
+    @apply font-sans;
+    font-family: var(--font-sans) sans-serif;
+ 
+  } */
+
   
+  
+}
+
+@layer components{
+  .neo-base{
+    box-shadow: 3px 3px 3px 0 rgba(174, 174, 192, 0.15), -3px -3px 3px 0 rgba(255, 255, 255, 0.7);
+    background: var(--nue-white-1);
+  }
+  .neo-push{
+    box-shadow: inset 3px 3px 3px 0 rgba(174, 174, 192, 0.15), inset -3px -3px 3px 0 rgba(255, 255, 255, 0.7);
+    background: var(--nue-white-2);
+  }
+  .neo-button{
+    box-shadow: 1px 1px 1px 0 rgba(174, 174, 192, 0.15), -1px -1px 1px 0 rgba(255, 255, 255, 0.7);
+    background: var(--nue-white-1);
+  }
 }

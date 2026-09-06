@@ -11,7 +11,7 @@ export default function Social({ isReg = false }: { isReg?: boolean }) {
 	return (
 		<Button
 			onClick={() => router.push(`${SERVER_URL}/auth/google`)}
-			variant='outline'
+			variant='neoAction'
 			type='button'
 		>
 			{isReg ? 'Registration' : 'Login'} with Google

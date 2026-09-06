@@ -19,7 +19,7 @@ export function MenuItem({ item }: MenuItemProps) {
 		<Link
 			href={item.link}
 			className={cn(styles.navLink, {
-				[styles.active]:
+				[`${styles.active} neo-push`]:
 					pathName === item.link ||
 					(item.link !== STORE_URL.home(params.storeId) &&
 						pathName.startsWith(`${item.link}/`))

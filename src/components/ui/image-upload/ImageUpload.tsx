@@ -33,7 +33,7 @@ export function ImageUpload({
 			<Button
 				type='button'
 				disabled={isDisabled || isUploading}
-				variant='secondary'
+				variant='neoAction'
 				onClick={handleButtonClick}
 				className={cn(styles.upload, {
 					'mt-4': value.length

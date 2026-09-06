@@ -53,7 +53,7 @@ export function Products({ storeId }: IProductsProps) {
 							/>
 							<div className={styles.buttons}>
 								<Link href={STORE_URL.productCreate(storeId)}>
-									<Button variant='primary'>
+									<Button variant='neo'>
 										<Plus />
 										Create Product
 									</Button>

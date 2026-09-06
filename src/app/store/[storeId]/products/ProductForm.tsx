@@ -87,7 +87,7 @@ export function ProductForm({
 						confirmButton='Delete'
 					>
 						<Button
-							variant='destructive'
+							variant='neoDanger'
 							title='Delete Store'
 							disabled={Disabled}
 						>
@@ -146,7 +146,7 @@ export function ProductForm({
 							disabled={Disabled}
 							placeholer='Enter product description'
 						/>
-						<Button type='submit' variant='primary'>
+						<Button type='submit' variant='neoAction'>
 							{Action}
 						</Button>
 					</form>
