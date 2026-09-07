@@ -11,7 +11,7 @@ import { cn } from '@/lib/utils'
 
 interface IImageUploadProps {
 	isDisabled: boolean
-	onChange: (value: string[]) => void
+	onChange: (value: string[] | string) => void
 	value: string[]
 }
 export function ImageUpload({

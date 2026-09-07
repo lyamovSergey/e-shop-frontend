@@ -1,0 +1,9 @@
+@reference "#app.css";
+.wrapper {
+	@apply flex flex-col w-full min-h-screen;
+	.layout {
+		main {
+			background: var(--nue-white-1);
+		}
+	}
+}

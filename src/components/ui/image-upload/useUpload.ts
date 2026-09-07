@@ -4,12 +4,18 @@ import toast from 'react-hot-toast'
 
 import { fileService } from '@/services/files.service'
 
-export function useUpload(onChange: (value: string[]) => void) {
+export function useUpload(onChange: (value: string[] | string) => void) {
 	const fileInputRef = useRef<HTMLInputElement>(null)
 
 	const { mutate: uploadFiles, isPending: isUploading } = useMutation({
 		mutationKey: ['upload_files'],
-		mutationFn: (formData: FormData) => fileService.upload(formData),
+		mutationFn: ({
+			formData,
+			folder
+		}: {
+			formData: FormData
+			folder?: string
+		}) => fileService.upload(formData, folder),
 		onSuccess(data) {
 			onChange(data.map(file => file.url))
 		},
@@ -18,13 +24,16 @@ export function useUpload(onChange: (value: string[]) => void) {
 		}
 	})
 
-	const handleFileChange = (event: ChangeEvent<HTMLInputElement>) => {
+	const handleFileChange = (
+		event: ChangeEvent<HTMLInputElement>,
+		folder?: string
+	) => {
 		const selectedFiles = event.target.files
 		if (selectedFiles) {
 			const fileArray = Array.from(selectedFiles)
 			const formData = new FormData()
 			fileArray.forEach(file => formData.append('files', file))
-			uploadFiles(formData)
+			uploadFiles({ formData, folder })
 		}
 	}
 	const handleButtonClick = () => {

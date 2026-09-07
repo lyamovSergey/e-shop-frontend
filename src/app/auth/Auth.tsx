@@ -25,7 +25,7 @@ export function Auth() {
 	return (
 		<div className={styles.wrapper}>
 			<div className={cn('flex flex-col gap-6 min-w-85')}>
-				<div className='neo-base'></div>
+				{/* <div className='neo-base'></div> */}
 				<Card>
 					<CardHeader>
 						<CardTitle>

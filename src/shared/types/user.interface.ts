@@ -9,5 +9,12 @@ export interface IUser {
 	picture: string
 	favorites: IProduct[]
 	orders: IOrder[]
-	stores: IStore[]
+	store?: IStore
+	role: EnumUserRole
+}
+
+export enum EnumUserRole {
+	ADMIN = 'ADMIN',
+	SALER = 'SALER',
+	USER = 'USER'
 }

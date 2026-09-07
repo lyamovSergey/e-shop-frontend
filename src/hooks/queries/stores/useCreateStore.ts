@@ -3,7 +3,7 @@ import { useRouter } from 'next/navigation'
 import { useMemo } from 'react'
 import toast from 'react-hot-toast'
 
-import { STORE_URL } from '@/config/url.config'
+import { SALER_URL } from '@/config/url.config'
 
 import { storeService } from '@/services/store.service'
 
@@ -20,7 +20,7 @@ export function useCreateStore() {
 				queryKey: ['profile']
 			})
 			toast.success('Shop was created!')
-			router.push(STORE_URL.home(store.id))
+			router.push(SALER_URL.home(store.id))
 		},
 		onError() {
 			toast.error('Something went wrong :(')

@@ -2,7 +2,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useParams, useRouter } from 'next/navigation'
 import toast from 'react-hot-toast'
 
-import { STORE_URL } from '@/config/url.config'
+import { SALER_URL } from '@/config/url.config'
 
 import { productService } from '@/services/product.service'
 
@@ -22,7 +22,7 @@ export function useCreateProduct() {
 				queryKey: ['get_products_for_store_dashboard']
 			})
 			toast.success('Product was created!')
-			router.push(STORE_URL.products(params.storeId))
+			router.push(SALER_URL.products(params.storeId))
 		},
 		onError() {
 			toast.error('Something went wrong :(')

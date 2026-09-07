@@ -13,28 +13,29 @@ export const DASHBOARD_URL = {
 	home: () => DASHBOARD_URL.root(`/`),
 	favorites: () => DASHBOARD_URL.root(`/favorites`)
 }
-export const STORE_URL = {
-	root: (url = '') => `/store${url ? url : ''}`,
-	home: (storeId = '') => STORE_URL.root(`/${storeId}`),
+export const SALER_URL = {
+	root: (url = '') => `/saler${url ? url : ''}`,
+	home: (storeId = '') => SALER_URL.root(`/${storeId}`),
+	createStore: () => SALER_URL.root(`/create`),
 
-	products: (storeId = '') => STORE_URL.root(`/${storeId}/products`),
+	products: (storeId = '') => SALER_URL.root(`/${storeId}/products`),
 	productCreate: (storeId = '') =>
-		STORE_URL.root(`/${storeId}/products/create`),
+		SALER_URL.root(`/${storeId}/products/create`),
 	productEdit: (storeId = '', id = '') =>
-		STORE_URL.root(`/${storeId}/products/${id}`),
+		SALER_URL.root(`/${storeId}/products/${id}`),
 
-	categories: (storeId = '') => STORE_URL.root(`/${storeId}/categories`),
+	categories: (storeId = '') => SALER_URL.root(`/${storeId}/categories`),
 	categoryCreate: (storeId = '') =>
-		STORE_URL.root(`/${storeId}/categories/create`),
+		SALER_URL.root(`/${storeId}/categories/create`),
 	categoryEdit: (storeId = '', id = '') =>
-		STORE_URL.root(`/${storeId}/categories/${id}`),
+		SALER_URL.root(`/${storeId}/categories/${id}`),
 
-	colors: (storeId = '') => STORE_URL.root(`/${storeId}/colors`),
-	colorCreate: (storeId = '') => STORE_URL.root(`/${storeId}/colors/create`),
-	colorEdit: (storeId = '', id = '') =>
-		STORE_URL.root(`/${storeId}/colors/${id}`),
+	reviews: (storeId = '') => SALER_URL.root(`/${storeId}/reviews`),
 
-	reviews: (storeId = '') => STORE_URL.root(`/${storeId}/reviews`),
-
-	settings: (storeId = '') => STORE_URL.root(`/${storeId}/settings`)
+	settings: (storeId = '') => SALER_URL.root(`/${storeId}/settings`)
+}
+export const ADMIN_URL = {
+	root: (url = '') => `/admin${url ? url : ''}`,
+	home: () => ADMIN_URL.root(`/stores`),
+	categories: () => ADMIN_URL.root(`/categories`)
 }

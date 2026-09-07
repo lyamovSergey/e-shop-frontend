@@ -21,9 +21,9 @@ const buttonVariants = cva(
 				primary: 'text-white bg-blue-500 hover:bg-blue-500/90 cursor-pointer',
 				neo: 'neo-button',
 				neoAction:
-					'neo-button text-blue-800 bg-linear-to-br from-[#f0f0f3] from-20% via-[#f0f0f3] via-30% to-blue-500 to-100% hover:to-blue-900 transition-colors',
+					'neo-button text-blue-800 bg-linear-to-br from-[#f0f0f3] from-10% via-[#f0f0f3] via-10% to-blue-400 to-100% hover:to-blue-900 transition-colors',
 				neoDanger:
-					'neo-button text-destructive bg-linear-to-br from-[#f0f0f3] from-20% via-[#f0f0f3] via-30% to-destructive to-100% hover:to-red-900 transition-colors'
+					'neo-button text-destructive bg-linear-to-br from-[#f0f0f3] from-20% via-[#f0f0f3] via-10% to-red-400 to-100% hover:to-red-900 transition-colors'
 			},
 			size: {
 				default:
