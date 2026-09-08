@@ -23,7 +23,9 @@ import { ICategoryInput } from '@/shared/types/category.interface'
 interface IEditCategoryProps {
 	open: boolean
 	setIsOpen: (open: boolean) => void
-	category?: ICategoryColumn
+	category?: ICategoryInput & {
+		id?: string
+	}
 	onClose?: () => void
 }
 

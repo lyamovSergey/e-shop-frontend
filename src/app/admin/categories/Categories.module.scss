@@ -1,0 +1,8 @@
+@reference '#app.css';
+
+.categoriesContainer {
+	@apply grid grid-cols-1 gap-4 transition-all sm:grid-cols-2 xl:grid-cols-4;
+	.categoryItem {
+		@apply neo-base rounded-lg p-4 flex flex-col gap-4;
+	}
+}

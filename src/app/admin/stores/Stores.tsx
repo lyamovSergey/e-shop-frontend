@@ -12,7 +12,6 @@ import { useGetStores } from '@/hooks/queries/stores/useGetStores'
 
 export function Stores() {
 	const { stores } = useGetStores()
-	console.log('stores::: ', stores)
 	return (
 		<PageAnimation>
 			<div className={layoutStyles.pageWrapper}>

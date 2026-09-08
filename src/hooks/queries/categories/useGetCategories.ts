@@ -1,15 +1,12 @@
 import { useQuery } from '@tanstack/react-query'
 import { useParams } from 'next/navigation'
-import { useMemo } from 'react'
-
-import { STALE_TIME_30_MIN } from '@/constants/api.constants'
 
 import { categoryService } from '@/services/category.service'
 
 export function useGetCategories() {
 	const params = useParams<{ storeId: string }>()
 	const { data: categories, isLoading } = useQuery({
-		queryKey: ['get_categories', params.storeId],
+		queryKey: ['categories', params.storeId, 'list'],
 		queryFn: () => categoryService.getByStoreId(params.storeId),
 		staleTime: Infinity
 	})

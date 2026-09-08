@@ -5,13 +5,13 @@ import { API_URL } from '@/config/api.config'
 import { ICategory, ICategoryInput } from '@/shared/types/category.interface'
 
 class CategoryService {
-	// async getAll() {
-	// 	const { data } = await axiosClassic<ICategory[]>({
-	// 		url: API_URL.categories(),
-	// 		method: 'GET'
-	// 	})
-	// 	return data
-	// }
+	async getAll() {
+		const { data } = await axiosClassic<ICategory[]>({
+			url: API_URL.categories('/list'),
+			method: 'GET'
+		})
+		return data
+	}
 
 	async getByStoreId(id: string) {
 		const { data } = await axiosWithAuth<ICategory[]>({
@@ -29,10 +29,11 @@ class CategoryService {
 		return data
 	}
 
-	async create(data: ICategoryInput, storeId: string) {
+	async create(data: ICategoryInput, storeId?: string) {
 		const { data: createdCategory } = await axiosWithAuth<ICategory>({
-			url: API_URL.categories(`/${storeId}`),
+			url: API_URL.categories(`/create`),
 			method: 'POST',
+			params: { ...(storeId && { storeId: storeId }) },
 			data
 		})
 		return createdCategory
@@ -41,7 +42,7 @@ class CategoryService {
 	async update(id: string, data: ICategoryInput) {
 		const { data: updatedCategory } = await axiosWithAuth<ICategory>({
 			url: API_URL.categories(`/${id}`),
-			method: 'PUT',
+			method: 'PATCH',
 			data
 		})
 		return updatedCategory
