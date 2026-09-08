@@ -18,7 +18,7 @@ import { useCreateProduct } from '@/hooks/queries/products/useCreateProduct'
 import { useDeleteProduct } from '@/hooks/queries/products/useDeleteProduct'
 import { useUpdateProduct } from '@/hooks/queries/products/useUpdateProduct'
 
-import { productSchema } from '@/shared/schemas/product.schema'
+import { productSchema } from '@/shared/schemas/form-validators/product.schema'
 import { ICategory } from '@/shared/types/category.interface'
 import { IProduct, IProductInput } from '@/shared/types/product.interface'
 

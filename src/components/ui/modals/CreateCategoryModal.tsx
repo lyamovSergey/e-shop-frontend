@@ -17,7 +17,7 @@ import { FormTextInput } from '@/components/ui/form-fields/FormTextInput'
 import { useCreateCategory } from '@/hooks/queries/categories/useCreateCategory'
 import { useUpdateCategory } from '@/hooks/queries/categories/useUpdateCategory'
 
-import { createCategorySchema } from '@/shared/schemas/createCategory.schema'
+import { createCategorySchema } from '@/shared/schemas/form-validators/createCategory.schema'
 import { ICategoryInput } from '@/shared/types/category.interface'
 
 interface IEditCategoryProps {

@@ -39,6 +39,8 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
+  --color-nue-white-1: var(--nue-white-1);
+	--color-nue-white-2: var(--nue-white-2);
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
@@ -192,7 +194,23 @@
   
 }
 
-@layer components{
+@utility neo-base {
+	box-shadow: 3px 3px 3px 0 rgba(174, 174, 192, 0.15),
+		-3px -3px 3px 0 rgba(255, 255, 255, 0.7);
+	background: var(--nue-white-1);
+}
+
+@utility neo-push{
+  box-shadow: inset 3px 3px 3px 0 rgba(174, 174, 192, 0.15), inset -3px -3px 3px 0 rgba(255, 255, 255, 0.7);
+  background: var(--nue-white-2);
+}
+
+@utility neo-button{
+  box-shadow: 1px 1px 1px 0 rgba(174, 174, 192, 0.15), -1px -1px 1px 0 rgba(255, 255, 255, 0.7);
+  /* background: var(--nue-white-1); */
+}
+
+/* @layer components{
   .neo-base{
     box-shadow: 3px 3px 3px 0 rgba(174, 174, 192, 0.15), -3px -3px 3px 0 rgba(255, 255, 255, 0.7);
     background: var(--nue-white-1);
@@ -205,4 +223,4 @@
     box-shadow: 1px 1px 1px 0 rgba(174, 174, 192, 0.15), -1px -1px 1px 0 rgba(255, 255, 255, 0.7);
     background: var(--nue-white-1);
   }
-}
+} */

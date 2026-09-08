@@ -17,7 +17,7 @@ import { FormTextInput } from '@/components/ui/form-fields/FormTextInput'
 
 import { useCreateStore } from '@/hooks/queries/stores/useCreateStore'
 
-import { createStoreSchema } from '@/shared/schemas/createStore.schema'
+import { createStoreSchema } from '@/shared/schemas/form-validators/createStore.schema'
 import { IStoreCreate } from '@/shared/types/store.interface'
 
 export function CreateStoreModal({ children }: PropsWithChildren<unknown>) {

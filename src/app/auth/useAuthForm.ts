@@ -13,7 +13,10 @@ import {
 
 import { authService } from '@/services/auth/auth.service'
 
-import { loginSchema, registerSchema } from '@/shared/schemas/auth.schema'
+import {
+	loginSchema,
+	registerSchema
+} from '@/shared/schemas/form-validators/auth.schema'
 import { IAuthForm } from '@/shared/types/auth.interface'
 import { EnumUserRole } from '@/shared/types/user.interface'
 
@@ -23,7 +26,7 @@ export function useAuthForm(isReg: boolean) {
 	const router = useRouter()
 	const form = useForm<IAuthForm>({
 		resolver: zodResolver(formSchema),
-		mode: 'onChange',
+		mode: 'onSubmit',
 		defaultValues: {
 			name: '',
 			email: '',
@@ -40,12 +43,15 @@ export function useAuthForm(isReg: boolean) {
 
 			queryClient.setQueryData(['profile'], data.user)
 
-			if (data.user.role === EnumUserRole.ADMIN) router.push(ADMIN_URL.home())
+			if (data.user.role === EnumUserRole.ADMIN)
+				return router.push(ADMIN_URL.home())
 			if (data.user.role === EnumUserRole.SALER) {
-				if (data.user.store) router.push(SALER_URL.home(data.user.store.id))
-				router.push(SALER_URL.createStore())
+				if (data.user.store?.id)
+					return router.push(SALER_URL.home(data.user.store.id))
+				return router.push(SALER_URL.createStore())
 			}
-			if (data.user.role == EnumUserRole.USER) router.push(PUBLIC_URL.home())
+			if (data.user.role == EnumUserRole.USER)
+				return router.push(PUBLIC_URL.home())
 		},
 		onError(error) {
 			if (error.message) {

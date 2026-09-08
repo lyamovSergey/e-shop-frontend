@@ -2,17 +2,18 @@ import { axiosClassic, axiosWithAuth } from '@/api/api.client.interseptors'
 
 import { API_URL } from '@/config/api.config'
 
+import { getStoresSchema } from '@/shared/schemas/api/getStores.schema'
 import { IStore, IStoreEdit } from '@/shared/types/store.interface'
 
 import { IStoreCreate } from './../shared/types/store.interface'
 
 class StoreService {
 	async getAll() {
-		const { data } = await axiosClassic<IStore[]>({
-			url: API_URL.stores('/list'),
+		const { data } = await axiosWithAuth<IStore[]>({
+			url: API_URL.stores('/full-list'),
 			method: 'GET'
 		})
-		return data
+		return getStoresSchema.parse(data)
 	}
 	async getById(id: string) {
 		const { data } = await axiosWithAuth<IStore>({
@@ -32,7 +33,7 @@ class StoreService {
 	async update(id: string, data: IStoreEdit) {
 		const { data: updatedStore } = await axiosWithAuth<IStore>({
 			url: API_URL.stores(`/update/${id}`),
-			method: 'PUT',
+			method: 'PATCH',
 			data
 		})
 		return updatedStore

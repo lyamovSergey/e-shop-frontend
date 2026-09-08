@@ -10,12 +10,12 @@ import {
 } from 'lucide-react'
 import { useParams } from 'next/navigation'
 
+import styles from './Navigation.module.scss'
+
 import { MenuItem } from '@/components/sidebar/navigation/MenuItem'
 import { type IMenuItem } from '@/components/sidebar/navigation/menu.interface'
 
 import { ADMIN_URL, SALER_URL } from '@/config/url.config'
-
-import styles from './Navigation.module.scss'
 
 interface INavigationProps {
 	type: 'admin' | 'saler' | 'user'

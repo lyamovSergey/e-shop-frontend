@@ -33,7 +33,7 @@ export function AuthFields({
 					formField='email'
 					placeholer='Enter your email'
 					title='Email'
-					type='email'
+					type='text'
 					disabled={isPending}
 				/>
 				<FormTextInput

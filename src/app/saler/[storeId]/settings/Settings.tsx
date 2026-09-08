@@ -1,27 +1,32 @@
 'use client'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Trash2Icon } from 'lucide-react'
-import { Controller, SubmitHandler, useForm } from 'react-hook-form'
+import { SubmitHandler, useForm } from 'react-hook-form'
+
+import styles from './Settings.module.scss'
+import layoutStyles from '@/components/layouts/AdminLayout.module.scss'
 
 import { Heading } from '@/components/ui/Heading'
 import { Button } from '@/components/ui/button'
-import { Field, FieldError, FieldLabel } from '@/components/ui/field'
+import { FormLogoUpload } from '@/components/ui/form-fields/FormLogoUpload'
 import { FormTextAreaInput } from '@/components/ui/form-fields/FormTextAreaInput'
 import { FormTextInput } from '@/components/ui/form-fields/FormTextInput'
-import { Input } from '@/components/ui/input'
 import { ConfirmModal } from '@/components/ui/modals/ConfirmModal'
-import { Textarea } from '@/components/ui/textarea'
 
 import { useDeleteStore } from '@/hooks/queries/stores/useDeleteStore'
 import { useUpdateStore } from '@/hooks/queries/stores/useUpdateStore'
+import { useProfile } from '@/hooks/useProfile'
 
-import { storeSettingSchema } from '@/shared/schemas/storeSettings.schema'
+import { storeSettingSchema } from '@/shared/schemas/form-validators/storeSettings.schema'
 import { IStoreEdit } from '@/shared/types/store.interface'
+import { EnumUserRole } from '@/shared/types/user.interface'
 
-import styles from '../Store.module.scss'
+import { cn } from '@/lib/utils'
 
 export function Settings() {
 	const { store, updateStore, isLoadingUpdate } = useUpdateStore()
+	const { user } = useProfile()
+
 	const { deleteStore, isLoadingDelete } = useDeleteStore()
 
 	const Disabled = isLoadingUpdate || isLoadingDelete
@@ -36,27 +41,38 @@ export function Settings() {
 		mode: 'onChange'
 	})
 
-	const onSubmit: SubmitHandler<IStoreEdit> = data => {
+	const onSubmit: SubmitHandler<IStoreEdit> = async data => {
 		updateStore(data)
 	}
 
 	return (
-		<div className={styles.wrapper}>
-			<div className={styles.header}>
+		<div className={layoutStyles.pageWrapper}>
+			<div className={layoutStyles.pageHeader}>
 				<Heading title='Settings' description='Manage store settings' />
-				<ConfirmModal
-					handleClick={deleteStore}
-					title='Del title'
-					text='Del text'
-					confirmButton='Delete'
-				>
-					<Button variant='neoDanger' title='Delete Store' disabled={Disabled}>
-						<Trash2Icon />
-					</Button>
-				</ConfirmModal>
+				{user?.role === EnumUserRole.ADMIN && (
+					<ConfirmModal
+						handleClick={deleteStore}
+						title='Del title'
+						text='Del text'
+						confirmButton='Delete'
+					>
+						<Button
+							variant='neoDanger'
+							title='Delete Store'
+							disabled={Disabled}
+						>
+							<Trash2Icon />
+						</Button>
+					</ConfirmModal>
+				)}
 			</div>
-			<div className={styles.content}>
-				<form onSubmit={form.handleSubmit(onSubmit)} className='space-y-4'>
+			<div className={cn(layoutStyles.pageContent, styles.settings_wrapper)}>
+				<form
+					onSubmit={form.handleSubmit(onSubmit)}
+					className={cn(styles.settingsForm, 'neo-base')}
+				>
+					<span className={styles.settingsForm_title}>Main store settings</span>
+					<FormLogoUpload form={form} formField='logo' disabled={Disabled} />
 					<FormTextInput
 						form={form}
 						formField='title'

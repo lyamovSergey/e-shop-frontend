@@ -1,0 +1,11 @@
+@reference '#app.css';
+
+.settings_wrapper {
+	@apply flex gap-4;
+	.settingsForm {
+		@apply space-y-4 max-w-90 w-full p-4 rounded-lg;
+		.settingsForm_title {
+			@apply flex justify-center text-slate-600;
+		}
+	}
+}

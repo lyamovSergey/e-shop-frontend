@@ -1,6 +1,7 @@
 'use client'
 
 import { useQueryClient } from '@tanstack/react-query'
+import { LogOut } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 
 import { Button } from '@/components/ui/button'
@@ -21,6 +22,7 @@ export function LogoutButton() {
 	}
 	return (
 		<Button variant='neoAction' onClick={logout} className='mb-2'>
+			<LogOut />
 			Logout
 		</Button>
 	)

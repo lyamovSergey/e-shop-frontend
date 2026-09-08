@@ -22,7 +22,13 @@ export function LogoUpload({ isDisabled, onChange, value }: IImageUploadProps) {
 		<div className={cn(styles.logo_container, 'neo-base')}>
 			{value ? (
 				<>
-					<Image src={value} alt='Product image' width={200} height={200} />
+					<Image
+						src={value}
+						alt='Product image'
+						width={200}
+						height={200}
+						className='max-w-43 max-h-43 w-auto h-auto'
+					/>
 					<Button
 						onClick={() => onChange('')}
 						variant='neoDanger'

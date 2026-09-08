@@ -55,10 +55,14 @@ export function ConfirmModal({
 					<AlertDialogDescription>{text}</AlertDialogDescription>
 				</AlertDialogHeader>
 				<AlertDialogFooter>
-					<AlertDialogCancel disabled={disabled}>
+					<AlertDialogCancel variant='neo' disabled={disabled}>
 						{cancelButton}
 					</AlertDialogCancel>
-					<AlertDialogAction disabled={disabled} onClick={handleClick}>
+					<AlertDialogAction
+						disabled={disabled}
+						variant='neoDanger'
+						onClick={handleClick}
+					>
 						{confirmButton}
 					</AlertDialogAction>
 				</AlertDialogFooter>

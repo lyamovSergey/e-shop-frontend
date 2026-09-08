@@ -7,4 +7,13 @@
 			@apply rounded-full;
 		}
 	}
+	.store_info {
+		@apply flex items-center gap-2 relative;
+		img {
+			@apply max-w-25 max-h-12.5 w-auto h-auto;
+		}
+		.store_name {
+			@apply font-bold text-slate-500 text-xl;
+		}
+	}
 }

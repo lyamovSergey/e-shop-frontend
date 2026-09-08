@@ -2,6 +2,8 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
+import styles from './Header.module.scss'
+
 import { StoreSwitcher } from '@/components/header/StoreSwitcher'
 import { MobileSidebar } from '@/components/sidebar/MobileSidebar'
 import { Spinner } from '@/components/ui/spinner'
@@ -10,7 +12,8 @@ import { DASHBOARD_URL } from '@/config/url.config'
 
 import { useProfile } from '@/hooks/useProfile'
 
-import styles from './Header.module.scss'
+import { EnumUserRole } from '@/shared/types/user.interface'
+
 import { cn } from '@/lib/utils'
 
 export function Header() {
@@ -18,6 +21,20 @@ export function Header() {
 	return (
 		<div className={cn('neo-base', styles.header)}>
 			<MobileSidebar />
+			{user?.role == EnumUserRole.SALER && (
+				<div className={styles.store_info}>
+					{user.store?.logo && (
+						<Image
+							src={user.store?.logo}
+							alt={user.store.title}
+							width={100}
+							height={100}
+							loading='eager'
+						/>
+					)}
+					<span className={styles.store_name}>{user.store?.title}</span>
+				</div>
+			)}
 			<div className={styles.header_menu}>
 				{isLoading ? (
 					<Spinner />

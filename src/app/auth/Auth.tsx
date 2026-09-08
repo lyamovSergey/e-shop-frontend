@@ -26,6 +26,7 @@ export function Auth() {
 		<div className={styles.wrapper}>
 			<div className={cn('flex flex-col gap-6 min-w-85')}>
 				{/* <div className='neo-base'></div> */}
+
 				<Card>
 					<CardHeader>
 						<CardTitle>
@@ -52,13 +53,15 @@ export function Auth() {
 									>
 										{isReg ? 'Registration' : 'Login'}
 									</Button>
-									<Social isReg={isReg} />
+									<Social isReg={isReg} disabled={isPending} />
 									<FieldDescription className='text-center'>
 										{isReg
 											? 'Alredy have account? '
 											: `Don't have an account? `}
 										<button
-											className=' hover:cursor-pointer underline'
+											className={cn('hover:cursor-pointer underline', {
+												'opacity-50 cursor-auto! pointer-events-none': isPending
+											})}
 											type='button'
 
 											onClick={() => setIsReg(!isReg)}
