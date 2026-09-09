@@ -12,12 +12,12 @@ import { FormTextInput } from '@/components/ui/form-fields/FormTextInput'
 
 import { useCreateStore } from '@/hooks/queries/stores/useCreateStore'
 
+import { IStoreInput } from '@/shared/schemas/api/store.schema'
 import { createStoreSchema } from '@/shared/schemas/form-validators/createStore.schema'
-import { IStoreCreate } from '@/shared/types/store.interface'
 
 export function Create() {
 	const { createStore, isLoadingCreate } = useCreateStore()
-	const form = useForm<IStoreCreate>({
+	const form = useForm<IStoreInput>({
 		resolver: zodResolver(createStoreSchema),
 		mode: 'onChange',
 		values: {
@@ -26,7 +26,7 @@ export function Create() {
 			logo: ''
 		}
 	})
-	const onSubmit: SubmitHandler<IStoreCreate> = data => {
+	const onSubmit: SubmitHandler<IStoreInput> = data => {
 		createStore(data)
 	}
 	return (
