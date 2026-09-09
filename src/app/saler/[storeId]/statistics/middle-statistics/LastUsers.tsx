@@ -1,12 +1,12 @@
 import Image from 'next/image'
 
+import styles from './MiddleStatistics.module.scss'
+
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 
-import { ILastUsers } from '@/shared/types/statistics.interface'
+import { ILastUsers } from '@/shared/schemas/api/statistics.schema'
 
 import { formatPrice } from '@/utils/string/format-price'
-
-import styles from './MiddleStatistics.module.scss'
 
 interface LastUsersProps {
 	data: ILastUsers[]

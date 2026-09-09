@@ -1,4 +1,4 @@
-import { EnumUserRole } from '@/shared/types/user.interface'
+import { EnumUserRole } from '@/shared/schemas/api/user.schema'
 
 interface JwtPayload {
 	id: string

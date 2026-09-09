@@ -1,6 +1,7 @@
 // TODO: Переделать под страйп типы
+import { IUser } from '@/shared/schemas/api/user.schema'
+
 import { ICartItem } from './cart.interface'
-import { IUser } from './user.interface'
 
 interface IAmount {
 	value: string

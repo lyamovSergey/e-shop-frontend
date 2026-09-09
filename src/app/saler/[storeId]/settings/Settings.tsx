@@ -17,9 +17,9 @@ import { useDeleteStore } from '@/hooks/queries/stores/useDeleteStore'
 import { useUpdateStore } from '@/hooks/queries/stores/useUpdateStore'
 import { useProfile } from '@/hooks/useProfile'
 
+import { IStoreInput } from '@/shared/schemas/api/store.schema'
+import { EnumUserRole } from '@/shared/schemas/api/user.schema'
 import { storeSettingSchema } from '@/shared/schemas/form-validators/storeSettings.schema'
-import { IStoreEdit } from '@/shared/types/store.interface'
-import { EnumUserRole } from '@/shared/types/user.interface'
 
 import { cn } from '@/lib/utils'
 
@@ -31,7 +31,7 @@ export function Settings() {
 
 	const Disabled = isLoadingUpdate || isLoadingDelete
 
-	const form = useForm<IStoreEdit>({
+	const form = useForm<IStoreInput>({
 		resolver: zodResolver(storeSettingSchema),
 		values: {
 			title: store?.title || '',
@@ -41,7 +41,7 @@ export function Settings() {
 		mode: 'onChange'
 	})
 
-	const onSubmit: SubmitHandler<IStoreEdit> = async data => {
+	const onSubmit: SubmitHandler<IStoreInput> = async data => {
 		updateStore(data)
 	}
 

@@ -17,7 +17,7 @@ export function useDeleteCategory(categoryId?: string) {
 			},
 			onSuccess() {
 				queryClient.invalidateQueries({
-					queryKey: ['get_categories']
+					queryKey: ['categories']
 				})
 				toast.success('Category was deleted!')
 			},

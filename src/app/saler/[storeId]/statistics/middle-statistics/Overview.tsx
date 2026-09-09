@@ -1,5 +1,7 @@
 import { Area, AreaChart, CartesianGrid, XAxis } from 'recharts'
 
+import styles from './MiddleStatistics.module.scss'
+
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import {
 	type ChartConfig,
@@ -8,9 +10,7 @@ import {
 	ChartTooltipContent
 } from '@/components/ui/chart'
 
-import { IMonthlySales } from '@/shared/types/statistics.interface'
-
-import styles from './MiddleStatistics.module.scss'
+import { IMonthlySales } from '@/shared/schemas/api/statistics.schema'
 
 interface OverviewProps {
 	data: IMonthlySales[]

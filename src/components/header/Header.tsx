@@ -12,7 +12,7 @@ import { DASHBOARD_URL } from '@/config/url.config'
 
 import { useProfile } from '@/hooks/useProfile'
 
-import { EnumUserRole } from '@/shared/types/user.interface'
+import { EnumUserRole } from '@/shared/schemas/api/user.schema'
 
 import { cn } from '@/lib/utils'
 
@@ -45,7 +45,7 @@ export function Header() {
 							<span className=' text-slate-500'>{user.name}</span>
 							<Link href={DASHBOARD_URL.home()}>
 								<Image
-									src={user.picture}
+									src={user.picture || ''}
 									alt={user.name}
 									width={42}
 									height={42}

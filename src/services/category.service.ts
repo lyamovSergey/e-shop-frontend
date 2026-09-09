@@ -2,7 +2,12 @@ import { axiosClassic, axiosWithAuth } from '@/api/api.client.interseptors'
 
 import { API_URL } from '@/config/api.config'
 
-import { ICategory, ICategoryInput } from '@/shared/types/category.interface'
+import {
+	ICategory,
+	ICategoryInput,
+	categoriesSchema,
+	categorySchema
+} from '@/shared/schemas/api/category.schema'
 
 class CategoryService {
 	async getAll() {
@@ -10,15 +15,7 @@ class CategoryService {
 			url: API_URL.categories('/list'),
 			method: 'GET'
 		})
-		return data
-	}
-
-	async getByStoreId(id: string) {
-		const { data } = await axiosWithAuth<ICategory[]>({
-			url: API_URL.categories(`/by-storeId/${id}`),
-			method: 'GET'
-		})
-		return data
+		return categoriesSchema.parse(data)
 	}
 
 	async getById(id: string) {
@@ -26,17 +23,16 @@ class CategoryService {
 			url: API_URL.categories(`/by-id/${id}`),
 			method: 'GET'
 		})
-		return data
+		return categorySchema.parse(data)
 	}
 
-	async create(data: ICategoryInput, storeId?: string) {
+	async create(data: ICategoryInput) {
 		const { data: createdCategory } = await axiosWithAuth<ICategory>({
 			url: API_URL.categories(`/create`),
 			method: 'POST',
-			params: { ...(storeId && { storeId: storeId }) },
 			data
 		})
-		return createdCategory
+		return categorySchema.parse(createdCategory)
 	}
 
 	async update(id: string, data: ICategoryInput) {
@@ -45,7 +41,7 @@ class CategoryService {
 			method: 'PATCH',
 			data
 		})
-		return updatedCategory
+		return categorySchema.parse(updatedCategory)
 	}
 
 	async delete(id: string) {
@@ -53,8 +49,16 @@ class CategoryService {
 			url: API_URL.categories(`/${id}`),
 			method: 'DELETE'
 		})
-		return deletedCategory
+		return categorySchema.parse(deletedCategory)
 	}
+
+	// async getByStoreId(id: string) {
+	// 	const { data } = await axiosWithAuth<ICategory[]>({
+	// 		url: API_URL.categories(`/by-storeId/${id}`),
+	// 		method: 'GET'
+	// 	})
+	// 	return data
+	// }
 }
 
 export const categoryService = new CategoryService()

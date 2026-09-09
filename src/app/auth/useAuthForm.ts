@@ -13,12 +13,12 @@ import {
 
 import { authService } from '@/services/auth/auth.service'
 
+import { EnumUserRole } from '@/shared/schemas/api/user.schema'
 import {
 	loginSchema,
 	registerSchema
 } from '@/shared/schemas/form-validators/auth.schema'
 import { IAuthForm } from '@/shared/types/auth.interface'
-import { EnumUserRole } from '@/shared/types/user.interface'
 
 export function useAuthForm(isReg: boolean) {
 	const queryClient = useQueryClient()

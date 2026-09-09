@@ -1,6 +1,6 @@
 import { type NextRequest, NextResponse } from 'next/server'
 
-import { EnumUserRole } from '@/shared/types/user.interface'
+import { EnumUserRole } from '@/shared/schemas/api/user.schema'
 
 import { getTokenPayload } from '@/utils/parse-token'
 

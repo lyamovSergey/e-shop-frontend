@@ -1,6 +1,6 @@
 import styles from './Categories.module.scss'
 
-import { ICategory } from '@/shared/types/category.interface'
+import { ICategory } from '@/shared/schemas/api/category.schema'
 
 interface ICategoryItemProps {
 	category: ICategory

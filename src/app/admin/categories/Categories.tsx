@@ -13,12 +13,13 @@ import { Heading } from '@/components/ui/Heading'
 import { Button } from '@/components/ui/button'
 import { CreateCategoryModal } from '@/components/ui/modals/CreateCategoryModal'
 
-import { useGetCategoriesAll } from '@/hooks/queries/categories/useGetCategoriesAll'
+import { useGetCategories } from '@/hooks/queries/categories/useGetCategories'
 
-import { ICategoryInput } from '@/shared/types/category.interface'
+import { ICategoryInput } from '@/shared/schemas/api/category.schema'
 
 export function Categories() {
-	const { categories, isLoading } = useGetCategoriesAll()
+	const { categories, isLoading } = useGetCategories()
+	console.log('categories::: ', categories)
 
 	const [openConfirm, setIsOpenConfirm] = useState(false)
 	const [openEdit, setIsOpenEdit] = useState(false)

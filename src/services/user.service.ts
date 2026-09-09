@@ -2,7 +2,7 @@ import { axiosWithAuth } from '@/api/api.client.interseptors'
 
 import { API_URL } from '@/config/api.config'
 
-import { IUser } from '@/shared/types/user.interface'
+import { IUser, userSchema } from '@/shared/schemas/api/user.schema'
 
 class UserService {
 	async getProfile() {
@@ -11,7 +11,7 @@ class UserService {
 			method: 'GET'
 		})
 
-		return data
+		return userSchema.parse(data)
 	}
 
 	async toggleFavorites(productId: string) {

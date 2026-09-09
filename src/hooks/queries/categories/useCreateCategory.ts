@@ -1,6 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useParams } from 'next/navigation'
-import { useRouter } from 'next/router'
 import toast from 'react-hot-toast'
 
 import { categoryService } from '@/services/category.service'
@@ -14,8 +13,7 @@ export function useCreateCategory() {
 	const { mutateAsync: createCategory, isPending: isLoadingCreate } =
 		useMutation({
 			mutationKey: ['create_category'],
-			mutationFn: (data: ICategoryInput) =>
-				categoryService.create(data, params?.storeId),
+			mutationFn: (data: ICategoryInput) => categoryService.create(data),
 			onSuccess() {
 				queryClient.invalidateQueries({
 					queryKey: ['categories']

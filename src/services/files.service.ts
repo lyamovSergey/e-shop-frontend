@@ -2,7 +2,7 @@ import { axiosWithAuth } from '@/api/api.client.interseptors'
 
 import { API_URL } from '@/config/api.config'
 
-import { IFile } from '@/shared/types/file.interface'
+import { IFile, filesSchema } from '@/shared/schemas/api/file.schema'
 
 class FileService {
 	async upload(file: FormData, folder?: string) {
@@ -17,7 +17,7 @@ class FileService {
 				'Content-Type': 'multipart/form-data'
 			}
 		})
-		return data
+		return filesSchema.parse(data)
 	}
 }
 export const fileService = new FileService()

@@ -1,20 +1,19 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
-import { useMemo } from 'react'
 import toast from 'react-hot-toast'
 
 import { SALER_URL } from '@/config/url.config'
 
 import { storeService } from '@/services/store.service'
 
-import { IStoreCreate } from '@/shared/types/store.interface'
+import { IStoreInput } from '@/shared/schemas/api/store.schema'
 
 export function useCreateStore() {
 	const router = useRouter()
 	const queryClient = useQueryClient()
 	const { mutate: createStore, isPending: isLoadingCreate } = useMutation({
-		mutationKey: ['create_store'],
-		mutationFn: (data: IStoreCreate) => storeService.create(data),
+		mutationKey: ['ctore', 'create'],
+		mutationFn: (data: IStoreInput) => storeService.create(data),
 		onSuccess(store) {
 			queryClient.invalidateQueries({
 				queryKey: ['profile']

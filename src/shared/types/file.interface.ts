@@ -1,4 +1,4 @@
-export interface IFile {
-	url: string
-	name: string
-}
+// export interface IFile {
+// 	url: string
+// 	name: string
+// }

@@ -4,8 +4,10 @@ import { API_URL } from '@/config/api.config'
 
 import {
 	IMainStatistics,
-	IMiddleStatistics
-} from '@/shared/types/statistics.interface'
+	IMiddleStatistics,
+	mainStatisticSchema,
+	middleStatisticsSchema
+} from '@/shared/schemas/api/statistics.schema'
 
 class StatisticsService {
 	async getMain(storeId: string) {
@@ -14,7 +16,7 @@ class StatisticsService {
 			method: 'GET'
 		})
 
-		return data
+		return mainStatisticSchema.parse(data)
 	}
 
 	async getMiddle(storeId: string) {
@@ -23,7 +25,7 @@ class StatisticsService {
 			method: 'GET'
 		})
 
-		return data
+		return middleStatisticsSchema.parse(data)
 	}
 }
 export const statisticsService = new StatisticsService()

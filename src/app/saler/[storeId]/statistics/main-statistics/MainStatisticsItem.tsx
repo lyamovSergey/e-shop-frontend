@@ -1,12 +1,13 @@
 import CountUp from 'react-countup'
 
+import styles from './MainStatistics.module.scss'
+
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 
-import { IMainStatistics } from '@/shared/types/statistics.interface'
+import { IMainStatistics } from '@/shared/schemas/api/statistics.schema'
 
 import { formatPrice } from '@/utils/string/format-price'
 
-import styles from './MainStatistics.module.scss'
 import { getIcon } from './statistics.utils'
 
 interface MainStatisticsItemProps {

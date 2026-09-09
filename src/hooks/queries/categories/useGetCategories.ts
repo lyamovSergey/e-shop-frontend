@@ -1,15 +1,18 @@
 import { useQuery } from '@tanstack/react-query'
-import { useParams } from 'next/navigation'
 
 import { categoryService } from '@/services/category.service'
 
 export function useGetCategories() {
-	const params = useParams<{ storeId: string }>()
-	const { data: categories, isLoading } = useQuery({
-		queryKey: ['categories', params.storeId, 'list'],
-		queryFn: () => categoryService.getByStoreId(params.storeId),
+	const {
+		data: categories,
+		isLoading,
+		error
+	} = useQuery({
+		queryKey: ['categories', 'list'],
+		queryFn: () => categoryService.getAll(),
 		staleTime: Infinity
 	})
 
+	if (error) console.log('useGetCategories error::', error)
 	return { categories, isLoading }
 }

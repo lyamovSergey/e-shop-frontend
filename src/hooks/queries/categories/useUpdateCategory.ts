@@ -3,7 +3,7 @@ import toast from 'react-hot-toast'
 
 import { categoryService } from '@/services/category.service'
 
-import { ICategoryInput } from '@/shared/types/category.interface'
+import { ICategoryInput } from '@/shared/schemas/api/category.schema'
 
 export function useUpdateCategory(categoryId?: string) {
 	const queryClient = useQueryClient()
@@ -19,7 +19,7 @@ export function useUpdateCategory(categoryId?: string) {
 			},
 			onSuccess() {
 				queryClient.invalidateQueries({
-					queryKey: ['get_categories']
+					queryKey: ['categories']
 				})
 				toast.success('Category was updated!')
 			},

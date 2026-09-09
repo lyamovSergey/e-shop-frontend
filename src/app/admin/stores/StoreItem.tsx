@@ -9,7 +9,7 @@ import styles from './Stores.module.scss'
 
 import { SALER_URL } from '@/config/url.config'
 
-import { getStoreSchema } from '@/shared/schemas/api/getStores.schema'
+import { getStoreSchema } from '@/shared/schemas/api/store.schema'
 
 import { formatDate } from '@/utils/string/format-date'
 

@@ -1,6 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
 import { useParams } from 'next/navigation'
-import { useMemo } from 'react'
 
 import { STALE_TIME_5_MIN } from '@/constants/api.constants'
 
@@ -12,32 +11,28 @@ export function useGetStatistics() {
 	const {
 		data: main,
 		isLoading: mainIsLoading,
-		isFetching: mainIsFetching
+		isFetching: mainIsFetching,
+		error: mainError
 	} = useQuery({
-		queryKey: ['get_main_statistics'],
+		queryKey: ['statistics', 'main', params.storeId],
 		queryFn: () => statisticsService.getMain(params.storeId),
 		staleTime: STALE_TIME_5_MIN
 	})
 
+	if (mainError) console.log('useGetStatistics error::: ', mainError)
+
 	const {
 		data: middle,
 		isLoading: middleIsLoading,
-		isFetching: middleIsFetching
+		isFetching: middleIsFetching,
+		error: middleError
 	} = useQuery({
-		queryKey: ['get_middle_statistics'],
+		queryKey: ['statistics', 'middle', params.storeId],
 		queryFn: () => statisticsService.getMiddle(params.storeId),
 		staleTime: STALE_TIME_5_MIN
 	})
 
-	// return useMemo(
-	// 	() => ({
-	// 		main,
-	// 		middle,
-	// 		isLoading: mainIsLoading || middleIsLoading,
-	// 		isFetching: mainIsFetching || middleIsFetching
-	// 	}),
-	// 	[main, middle, params.storeId]
-	// )
+	if (middleError) console.log('useGetStatistics error::: ', middleError)
 
 	return {
 		main,

@@ -8,7 +8,7 @@ export function useUpload(onChange: (value: string[] | string) => void) {
 	const fileInputRef = useRef<HTMLInputElement>(null)
 
 	const { mutate: uploadFiles, isPending: isUploading } = useMutation({
-		mutationKey: ['upload_files'],
+		mutationKey: ['files', 'upload'],
 		mutationFn: ({
 			formData,
 			folder
@@ -19,7 +19,8 @@ export function useUpload(onChange: (value: string[] | string) => void) {
 		onSuccess(data) {
 			onChange(data.map(file => file.url))
 		},
-		onError() {
+		onError(error) {
+			console.log('useUpload error::: ', error)
 			toast.error('Error upload files!')
 		}
 	})
@@ -39,8 +40,9 @@ export function useUpload(onChange: (value: string[] | string) => void) {
 	const handleButtonClick = () => {
 		fileInputRef.current?.click()
 	}
-	return useMemo(
-		() => ({ handleButtonClick, isUploading, fileInputRef, handleFileChange }),
-		[handleButtonClick, isUploading, fileInputRef, handleFileChange]
-	)
+	// return useMemo(
+	// 	() => ({ handleButtonClick, isUploading, fileInputRef, handleFileChange }),
+	// 	[handleButtonClick, isUploading, fileInputRef, handleFileChange]
+	// )
+	return { handleButtonClick, isUploading, fileInputRef, handleFileChange }
 }

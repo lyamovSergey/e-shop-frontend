@@ -1,25 +1,27 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { useParams } from 'next/navigation'
-import { useMemo } from 'react'
 import toast from 'react-hot-toast'
 
 import { storeService } from '@/services/store.service'
 
-import { IStoreEdit } from '@/shared/types/store.interface'
+import { IStoreInput } from '@/shared/schemas/api/store.schema'
 
 export function useUpdateStore() {
 	const params = useParams<{ storeId: string }>()
 	const queryClient = useQueryClient()
-	const { data: store } = useQuery({
-		queryKey: ['store', params.storeId],
+	const { data: store, error } = useQuery({
+		queryKey: ['store', 'by-id', params.storeId],
 		queryFn: () => storeService.getById(params.storeId)
 	})
 
+	if (error) console.log('useUpdateStore error::: ', error)
+
 	const { mutate: updateStore, isPending: isLoadingUpdate } = useMutation({
-		mutationKey: ['update_store'],
-		mutationFn: (data: IStoreEdit) => storeService.update(params.storeId, data),
+		mutationKey: ['store', 'update'],
+		mutationFn: (data: IStoreInput) =>
+			storeService.update(params.storeId, data),
 		onSuccess(updatedStore) {
-			queryClient.setQueryData(['store', params.storeId], updatedStore)
+			queryClient.setQueryData(['store', 'by-id', params.storeId], updatedStore)
 			queryClient.invalidateQueries({
 				queryKey: ['profile']
 			})

@@ -2,10 +2,12 @@ import { axiosClassic, axiosWithAuth } from '@/api/api.client.interseptors'
 
 import { API_URL } from '@/config/api.config'
 
-import { getStoresSchema } from '@/shared/schemas/api/getStores.schema'
-import { IStore, IStoreEdit } from '@/shared/types/store.interface'
-
-import { IStoreCreate } from './../shared/types/store.interface'
+import {
+	IStore,
+	IStoreInput,
+	storeSchema,
+	storesSchema
+} from '@/shared/schemas/api/store.schema'
 
 class StoreService {
 	async getAll() {
@@ -13,37 +15,37 @@ class StoreService {
 			url: API_URL.stores('/full-list'),
 			method: 'GET'
 		})
-		return getStoresSchema.parse(data)
+		return storesSchema.parse(data)
 	}
 	async getById(id: string) {
 		const { data } = await axiosWithAuth<IStore>({
 			url: API_URL.stores(`/get-by-id/${id}`),
 			method: 'GET'
 		})
-		return data
+		return storeSchema.parse(data)
 	}
-	async create(data: IStoreCreate) {
+	async create(data: IStoreInput) {
 		const { data: createdStore } = await axiosWithAuth<IStore>({
 			url: API_URL.stores(),
 			method: 'POST',
 			data
 		})
-		return createdStore
+		return storeSchema.parse(createdStore)
 	}
-	async update(id: string, data: IStoreEdit) {
+	async update(id: string, data: IStoreInput) {
 		const { data: updatedStore } = await axiosWithAuth<IStore>({
 			url: API_URL.stores(`/update/${id}`),
 			method: 'PATCH',
 			data
 		})
-		return updatedStore
+		return storeSchema.parse(updatedStore)
 	}
 	async delete(id: string) {
 		const { data: deletedStore } = await axiosWithAuth<IStore>({
 			url: API_URL.stores(`/${id}`),
 			method: 'DELETE'
 		})
-		return deletedStore
+		return storeSchema.parse(deletedStore)
 	}
 }
 export const storeService = new StoreService()
