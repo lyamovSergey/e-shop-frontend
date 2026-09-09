@@ -1,4 +1,4 @@
-import { IUser } from './user.interface'
+import { IUser } from '@/shared/schemas/api/user.schema'
 
 export interface IAuthForm {
 	name?: string

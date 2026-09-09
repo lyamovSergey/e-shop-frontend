@@ -1,6 +1,6 @@
-import { ICategory } from './category.interface'
+import { ICategory } from '@/shared/schemas/api/category.schema'
+
 import { IReview } from './review.interface'
-import { IStore } from './store.interface'
 
 export interface IProduct {
 	id: string
