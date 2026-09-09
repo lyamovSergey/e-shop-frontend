@@ -24,9 +24,9 @@ export function MainStatisticsItem({ item }: MainStatisticsItemProps) {
 			<CardContent className={styles.content}>
 				<h2>
 					{item.id !== 1 ? (
-						<CountUp end={item.value} />
+						<CountUp end={item.value || 0} />
 					) : (
-						<CountUp end={item.value} formattingFn={formatPrice} />
+						<CountUp end={item.value || 0} formattingFn={formatPrice} />
 					)}
 				</h2>
 			</CardContent>
