@@ -4,19 +4,19 @@ import toast from 'react-hot-toast'
 
 import { categoryService } from '@/services/category.service'
 
-import { ICategoryInput } from '@/shared/types/category.interface'
+import { ICategoryInput } from '@/shared/schemas/api/category.schema'
 
 export function useCreateCategory() {
-	const params = useParams<{ storeId?: string }>()
+	// const params = useParams<{ storeId?: string }>()
 	const queryClient = useQueryClient()
 
 	const { mutateAsync: createCategory, isPending: isLoadingCreate } =
 		useMutation({
-			mutationKey: ['create_category'],
+			mutationKey: ['category', 'create'],
 			mutationFn: (data: ICategoryInput) => categoryService.create(data),
 			onSuccess() {
 				queryClient.invalidateQueries({
-					queryKey: ['categories']
+					queryKey: ['category']
 				})
 
 				toast.success('Category was created!')

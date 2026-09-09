@@ -3,13 +3,13 @@ import toast from 'react-hot-toast'
 
 import { categoryService } from '@/services/category.service'
 
-export function useDeleteCategory(categoryId?: string) {
+export function useDeleteCategory() {
 	const queryClient = useQueryClient()
 
 	const { mutateAsync: deleteCategory, isPending: isLoadingDelete } =
 		useMutation({
-			mutationKey: ['delete_category'],
-			mutationFn: () => {
+			mutationKey: ['category', 'delete'],
+			mutationFn: (categoryId: string) => {
 				if (!categoryId) {
 					throw new Error('Category ID is required')
 				}
@@ -17,7 +17,7 @@ export function useDeleteCategory(categoryId?: string) {
 			},
 			onSuccess() {
 				queryClient.invalidateQueries({
-					queryKey: ['categories']
+					queryKey: ['category']
 				})
 				toast.success('Category was deleted!')
 			},

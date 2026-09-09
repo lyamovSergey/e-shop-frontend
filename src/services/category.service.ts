@@ -32,7 +32,7 @@ class CategoryService {
 			method: 'POST',
 			data
 		})
-		return categorySchema.parse(createdCategory)
+		return createdCategory
 	}
 
 	async update(id: string, data: ICategoryInput) {
@@ -41,7 +41,7 @@ class CategoryService {
 			method: 'PATCH',
 			data
 		})
-		return categorySchema.parse(updatedCategory)
+		return updatedCategory
 	}
 
 	async delete(id: string) {
@@ -49,7 +49,7 @@ class CategoryService {
 			url: API_URL.categories(`/${id}`),
 			method: 'DELETE'
 		})
-		return categorySchema.parse(deletedCategory)
+		return deletedCategory
 	}
 
 	// async getByStoreId(id: string) {

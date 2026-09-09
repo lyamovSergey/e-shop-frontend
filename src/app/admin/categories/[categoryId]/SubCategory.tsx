@@ -1,9 +1,8 @@
 'use client'
-
 import { Plus } from 'lucide-react'
 import { useState } from 'react'
 
-import styles from './Categories.module.scss'
+import styles from '../Categories.module.scss'
 import layoutStyles from '@/components/layouts/AdminLayout.module.scss'
 
 import { CategoryItem } from '@/app/admin/categories/CategoryItem'
@@ -17,18 +16,18 @@ import { ConfirmModal } from '@/components/ui/modals/ConfirmModal'
 import { CreateCategoryModal } from '@/components/ui/modals/CreateCategoryModal'
 
 import { useDeleteCategory } from '@/hooks/queries/categories/useDeleteCategory'
-import { useGetCategories } from '@/hooks/queries/categories/useGetCategories'
+import { useGetCategory } from '@/hooks/queries/categories/useGetCategory'
 
-import { ICategory, ICategoryInput } from '@/shared/schemas/api/category.schema'
+import { ICategory } from '@/shared/schemas/api/category.schema'
 
-export function Categories() {
+export function SubCategory() {
 	const [openConfirm, setIsOpenConfirm] = useState(false)
 	const [openEdit, setIsOpenEdit] = useState(false)
 	const [checkedCategory, setCheckedCategory] = useState<ICategory | undefined>(
 		undefined
 	)
 
-	const { categories, isLoading } = useGetCategories()
+	const { category, isLoading } = useGetCategory()
 	const { deleteCategory, isLoadingDelete } = useDeleteCategory()
 
 	const delCategory = async () => {
@@ -42,30 +41,45 @@ export function Categories() {
 		if (type === 'edit') setIsOpenEdit(true)
 	}
 
+	const create = () => {
+		setCheckedCategory({
+			id: '',
+			name: '',
+			description: '',
+			parentId: category?.id,
+			children: []
+		})
+		setIsOpenEdit(true)
+	}
+
 	return (
 		<PageAnimation>
 			<div className={layoutStyles.pageWrapper}>
 				<div className={layoutStyles.pageHeader}>
-					<Heading title={`Categories`} description='All categories' />
+					<Heading
+						title={`Sub Categories`}
+						description={`Subcategories for ${category?.name}`}
+						hasBack
+					/>
 					<div className={layoutStyles.buttons}>
-						{!!categories?.length && (
-							<Button variant='neoAction' onClick={() => setIsOpenEdit(true)}>
+						{!!category?.children.length && (
+							<Button variant='neoAction' onClick={create}>
 								<Plus />
-								Create Category
+								Create Sub Category
 							</Button>
 						)}
 					</div>
 				</div>
 				<div className={layoutStyles.pageContent}>
 					<div className={styles.categoriesContainer}>
-						{isLoading && !categories?.length ? (
+						{isLoading && !category?.children.length ? (
 							<>
 								{Array.from({ length: 5 }).map((_, i) => (
 									<CategorySkeleton key={i} />
 								))}
 							</>
 						) : (
-							categories?.map(item => (
+							category?.children?.map(item => (
 								<CategoryItem
 									key={item.id}
 									category={item}
@@ -74,14 +88,15 @@ export function Categories() {
 							))
 						)}
 					</div>
-					{!isLoading && !categories?.length && (
+
+					{!isLoading && !category?.children.length && (
 						<ListEmpty
-							text='Please add one or more categories'
-							title='Category list is empty'
+							text='Please add one or more subcategories'
+							title='Subcategory list is empty'
 						>
-							<Button variant='neoAction' onClick={() => setIsOpenEdit(true)}>
+							<Button variant='neoAction' onClick={create}>
 								<Plus />
-								Create Category
+								Create Sub Category
 							</Button>
 						</ListEmpty>
 					)}

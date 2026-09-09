@@ -37,5 +37,7 @@ export const SALER_URL = {
 export const ADMIN_URL = {
 	root: (url = '') => `/admin${url ? url : ''}`,
 	home: () => ADMIN_URL.root(`/stores`),
-	categories: () => ADMIN_URL.root(`/categories`)
+	categories: () => ADMIN_URL.root(`/categories`),
+	subCategories: (categoryId = '') =>
+		ADMIN_URL.root(`/categories/${categoryId}`)
 }

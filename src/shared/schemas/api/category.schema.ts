@@ -4,8 +4,8 @@ const categoryBaseSchema = z.object({
 	id: z.string(),
 	name: z.string(),
 	description: z.string().nullable(),
-	parentId: z.string().nullable(),
-	storeId: z.string().nullable()
+	parentId: z.string().nullish(),
+	storeId: z.string().nullish()
 })
 
 type Category = z.infer<typeof categoryBaseSchema> & {
@@ -13,7 +13,7 @@ type Category = z.infer<typeof categoryBaseSchema> & {
 }
 
 export const categorySchema: z.ZodType<Category> = categoryBaseSchema.extend({
-	children: z.array(z.lazy(() => categorySchema))
+	children: z.array(z.lazy(() => categorySchema)).default([])
 })
 export const categoriesSchema = z.array(categorySchema)
 export const categoryInputSchema = categoryBaseSchema.pick({

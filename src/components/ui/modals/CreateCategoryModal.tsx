@@ -17,8 +17,8 @@ import { FormTextInput } from '@/components/ui/form-fields/FormTextInput'
 import { useCreateCategory } from '@/hooks/queries/categories/useCreateCategory'
 import { useUpdateCategory } from '@/hooks/queries/categories/useUpdateCategory'
 
+import { ICategoryInput } from '@/shared/schemas/api/category.schema'
 import { createCategorySchema } from '@/shared/schemas/form-validators/createCategory.schema'
-import { ICategoryInput } from '@/shared/types/category.interface'
 
 interface IEditCategoryProps {
 	open: boolean
@@ -45,12 +45,14 @@ export function CreateCategoryModal({
 		mode: 'onChange',
 		values: {
 			name: category?.name || '',
-			description: category?.description || ''
+			description: category?.description || '',
+			parentId: category?.parentId || null
 		}
 	})
 
 	const onSubmit: SubmitHandler<ICategoryInput> = async data => {
-		const action = category ? updateCategory : createCategory
+		const action = category?.id ? updateCategory : createCategory
+		data.parentId = category?.parentId || null
 		await action(data)
 		form.reset()
 		setIsOpen(false)

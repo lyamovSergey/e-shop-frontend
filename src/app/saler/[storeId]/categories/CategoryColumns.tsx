@@ -20,7 +20,7 @@ import {
 	DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
 
-import { ICategory } from '@/shared/types/category.interface'
+import { ICategory } from '@/shared/schemas/api/category.schema'
 
 export interface ICategoryColumn extends Pick<
 	ICategory,

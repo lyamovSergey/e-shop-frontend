@@ -8,7 +8,7 @@ export function useGetCategories() {
 		isLoading,
 		error
 	} = useQuery({
-		queryKey: ['categories', 'list'],
+		queryKey: ['category', 'list'],
 		queryFn: () => categoryService.getAll(),
 		staleTime: Infinity
 	})

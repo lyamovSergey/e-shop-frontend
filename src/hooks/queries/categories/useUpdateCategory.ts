@@ -10,7 +10,7 @@ export function useUpdateCategory(categoryId?: string) {
 
 	const { mutateAsync: updateCategory, isPending: isLoadingUpdate } =
 		useMutation({
-			mutationKey: ['update_category'],
+			mutationKey: ['category', 'update'],
 			mutationFn: (data: ICategoryInput) => {
 				if (!categoryId) {
 					throw new Error('Category ID is required')
@@ -19,7 +19,7 @@ export function useUpdateCategory(categoryId?: string) {
 			},
 			onSuccess() {
 				queryClient.invalidateQueries({
-					queryKey: ['categories']
+					queryKey: ['category']
 				})
 				toast.success('Category was updated!')
 			},
