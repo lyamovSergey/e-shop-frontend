@@ -3,6 +3,9 @@
 import { Plus } from 'lucide-react'
 import { useState } from 'react'
 
+import styles from '../Store.module.scss'
+import './table.scss'
+
 import {
 	CategoryColumns,
 	type ICategoryColumn
@@ -19,10 +22,6 @@ import { CreateCategoryModal } from '@/components/ui/modals/CreateCategoryModal'
 import { useDeleteCategory } from '@/hooks/queries/categories/useDeleteCategory'
 import { useGetCategories } from '@/hooks/queries/categories/useGetCategories'
 
-import styles from '../Store.module.scss'
-
-import './table.scss'
-
 export function Categories() {
 	const { categories, isLoading } = useGetCategories()
 	const [openConfirm, setIsOpenConfirm] = useState(false)
@@ -30,9 +29,7 @@ export function Categories() {
 	const [checkedCategory, setCheckedCategory] = useState<
 		ICategoryColumn | undefined
 	>(undefined)
-	const { deleteCategory, isLoadingDelete } = useDeleteCategory(
-		checkedCategory?.id
-	)
+
 	const formattedCategories: ICategoryColumn[] = categories
 		? categories.map(category => ({
 				id: category.id,
@@ -41,10 +38,6 @@ export function Categories() {
 			}))
 		: []
 
-	const delCategory = async () => {
-		await deleteCategory()
-		setIsOpenConfirm(false)
-	}
 	const tableAction = (type: 'edit' | 'delete', item: ICategoryColumn) => {
 		setCheckedCategory(item)
 		if (type === 'delete') setIsOpenConfirm(true)
@@ -63,12 +56,6 @@ export function Categories() {
 								title={`Categories (${categories?.length || 0})`}
 								description='All categories in your store'
 							/>
-							<div className={styles.buttons}>
-								<Button variant='neoAction' onClick={() => setIsOpenEdit(true)}>
-									<Plus />
-									Create Category
-								</Button>
-							</div>
 						</div>
 						<div className={styles.table}>
 							<DataTable
@@ -78,19 +65,6 @@ export function Categories() {
 								tableName='categories'
 							/>
 						</div>
-						<ConfirmModal
-							handleClick={delCategory}
-							open={openConfirm}
-							onOpenChange={setIsOpenConfirm}
-							onClose={() => setCheckedCategory(undefined)}
-							disabled={isLoadingDelete}
-						/>
-						<CreateCategoryModal
-							open={openEdit}
-							setIsOpen={setIsOpenEdit}
-							category={checkedCategory}
-							onClose={() => setCheckedCategory(undefined)}
-						/>
 					</>
 				)}
 			</div>
