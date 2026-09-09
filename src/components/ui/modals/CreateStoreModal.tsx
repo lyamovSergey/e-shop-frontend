@@ -17,18 +17,18 @@ import { FormTextInput } from '@/components/ui/form-fields/FormTextInput'
 
 import { useCreateStore } from '@/hooks/queries/stores/useCreateStore'
 
+import { IStoreInput } from '@/shared/schemas/api/store.schema'
 import { createStoreSchema } from '@/shared/schemas/form-validators/createStore.schema'
-import { IStoreCreate } from '@/shared/types/store.interface'
 
 export function CreateStoreModal({ children }: PropsWithChildren<unknown>) {
 	const [isOpen, setIsOpen] = useState(false)
 	const { createStore, isLoadingCreate } = useCreateStore()
-	const form = useForm<IStoreCreate>({
+	const form = useForm<IStoreInput>({
 		resolver: zodResolver(createStoreSchema),
 		mode: 'onChange'
 	})
 
-	const onSubmit: SubmitHandler<IStoreCreate> = data => {
+	const onSubmit: SubmitHandler<IStoreInput> = data => {
 		createStore(data)
 		setIsOpen(false)
 	}

@@ -22,7 +22,7 @@ import {
 
 import { SALER_URL } from '@/config/url.config'
 
-import { IStore } from '@/shared/types/store.interface'
+import { IStore } from '@/shared/schemas/api/store.schema'
 
 import { cn } from '@/lib/utils'
 
