@@ -2,6 +2,8 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { Trash2Icon } from 'lucide-react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 
+import styles from '../Store.module.scss'
+
 import { ProductSkeleton } from '@/app/saler/[storeId]/products/[productId]/ProductSkeleton'
 
 import { Heading } from '@/components/ui/Heading'
@@ -18,11 +20,9 @@ import { useCreateProduct } from '@/hooks/queries/products/useCreateProduct'
 import { useDeleteProduct } from '@/hooks/queries/products/useDeleteProduct'
 import { useUpdateProduct } from '@/hooks/queries/products/useUpdateProduct'
 
+import { ICategory } from '@/shared/schemas/api/category.schema'
 import { productSchema } from '@/shared/schemas/form-validators/product.schema'
-import { ICategory } from '@/shared/types/category.interface'
 import { IProduct, IProductInput } from '@/shared/types/product.interface'
-
-import styles from '../Store.module.scss'
 
 interface ProductFormProps {
 	product?: IProduct
