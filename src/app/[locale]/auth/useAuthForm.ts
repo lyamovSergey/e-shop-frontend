@@ -1,6 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { useLocale } from 'next-intl'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 
@@ -21,7 +20,6 @@ export function useAuthForm(isReg: boolean) {
 	const queryClient = useQueryClient()
 	const formSchema = isReg ? registerSchema : loginSchema
 	const router = useRouter()
-	const locale = useLocale()
 	const form = useForm<IAuthForm>({
 		resolver: zodResolver(formSchema),
 		mode: 'onSubmit',

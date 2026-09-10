@@ -25,6 +25,14 @@ const nextConfig: NextConfig = {
 			}
 		]
 	},
+	turbopack: {
+		rules: {
+			'*.svg': {
+				loaders: ['@svgr/webpack'],
+				as: '*.js'
+			}
+		}
+	},
 	experimental: {
 		viewTransition: true
 	}

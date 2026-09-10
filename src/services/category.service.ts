@@ -1,5 +1,5 @@
-import { axiosClassic, axiosWithAuth } from '@/api/api.client.interseptors'
-
+// import { axiosClassic, axiosWithAuth } from '@/config/api.client.interseptors'
+import { axiosClassic, axiosWithAuth } from '@/config/api.client.interseptors'
 import { API_URL } from '@/config/api.config'
 
 import {

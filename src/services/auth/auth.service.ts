@@ -1,5 +1,4 @@
-import { axiosClassic } from '@/api/api.client.interseptors'
-
+import { axiosClassic } from '@/config/api.client.interseptors'
 import { API_URL } from '@/config/api.config'
 
 import { IAuthForm, IAuthResponse } from '@/shared/types/auth.interface'

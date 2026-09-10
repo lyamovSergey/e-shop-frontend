@@ -1,0 +1,21 @@
+@reference '#app.css';
+
+.toggle_wrapper {
+	@apply neo-base flex gap-0;
+	.toggle_item {
+		@apply flex hover:bg-nue-white-1 hover:cursor-pointer relative border-3 border-transparent;
+		&[aria-pressed='true'] {
+			@apply flex neo-push border-3 border-nue-white-1;
+		}
+		&.vs_spacer {
+			@apply mr-2;
+			&::after {
+				content: '';
+				display: flex;
+				position: absolute;
+				right: -9px;
+				@apply neo-button w-1 h-6;
+			}
+		}
+	}
+}

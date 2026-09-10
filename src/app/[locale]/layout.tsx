@@ -3,6 +3,8 @@ import { NextIntlClientProvider, hasLocale } from 'next-intl'
 import { Geist, Geist_Mono } from 'next/font/google'
 import { notFound } from 'next/navigation'
 
+import { DefaultHeader } from '@/components/header/DefaultHeader'
+
 import { SITE_DESCRIPTION, SITE_TITLE } from '@/constants/seo.constants'
 
 import '../globals.css'
@@ -46,6 +48,7 @@ export default async function RootLayout({
 		>
 			<body className='min-h-full flex flex-col'>
 				<NextIntlClientProvider locale={locale}>
+					<DefaultHeader />
 					<Providers>{children}</Providers>
 				</NextIntlClientProvider>
 			</body>

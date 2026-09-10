@@ -1,6 +1,5 @@
-import { axiosServerWithAuth } from '@/api/api.server.interseptors'
-
 import { API_URL } from '@/config/api.config'
+import { axiosServerWithAuth } from '@/config/api.server.interseptors'
 
 class ValidatorService {
 	async validateToken() {

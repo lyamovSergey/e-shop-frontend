@@ -17,3 +17,6 @@
 		}
 	}
 }
+.header_default {
+	@apply fixed top-0 p-6 gap-x-4 mx-4 mt-2 neo-base flex items-center rounded-lg  w-[calc(100vw-32px)];
+}

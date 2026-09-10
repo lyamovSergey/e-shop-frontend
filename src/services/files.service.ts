@@ -1,5 +1,4 @@
-import { axiosWithAuth } from '@/api/api.client.interseptors'
-
+import { axiosWithAuth } from '@/config/api.client.interseptors'
 import { API_URL } from '@/config/api.config'
 
 import { IFile, filesSchema } from '@/shared/schemas/api/file.schema'
