@@ -6,6 +6,7 @@ import styles from './Header.module.scss'
 
 import { StoreSwitcher } from '@/components/header/StoreSwitcher'
 import { MobileSidebar } from '@/components/sidebar/MobileSidebar'
+import { LangToggler } from '@/components/ui/locale/LangToggler'
 import { Spinner } from '@/components/ui/spinner'
 
 import { DASHBOARD_URL } from '@/config/url.config'
@@ -36,6 +37,7 @@ export function Header() {
 				</div>
 			)}
 			<div className={styles.header_menu}>
+				<LangToggler />
 				{isLoading ? (
 					<Spinner />
 				) : (
