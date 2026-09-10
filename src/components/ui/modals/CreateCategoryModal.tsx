@@ -2,7 +2,7 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { SubmitHandler, useForm } from 'react-hook-form'
 
-import { ICategoryColumn } from '@/app/saler/[storeId]/categories/CategoryColumns'
+import { ICategoryColumn } from '@/app/[locale]/saler/[storeId]/categories/CategoryColumns'
 
 import { Button } from '@/components/ui/button'
 import {

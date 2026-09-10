@@ -1,0 +1,4 @@
+@reference "#app.css";
+.wrapper {
+	@apply min-h-screen flex border items-center justify-center;
+}

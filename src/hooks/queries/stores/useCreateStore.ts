@@ -1,5 +1,4 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { useRouter } from 'next/navigation'
 import toast from 'react-hot-toast'
 
 import { SALER_URL } from '@/config/url.config'
@@ -7,6 +6,8 @@ import { SALER_URL } from '@/config/url.config'
 import { storeService } from '@/services/store.service'
 
 import { IStoreInput } from '@/shared/schemas/api/store.schema'
+
+import { useRouter } from '@/i18n/navigation'
 
 export function useCreateStore() {
 	const router = useRouter()
