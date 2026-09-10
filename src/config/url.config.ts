@@ -41,3 +41,9 @@ export const ADMIN_URL = {
 	subCategories: (categoryId = '') =>
 		ADMIN_URL.root(`/categories/${categoryId}`)
 }
+
+export const TEST_URL = {
+	root: (url = '') => `/${url ? url : ''}`,
+	home: () => TEST_URL.root(`test`),
+	subPage: (id = '') => TEST_URL.root(`test/${id}`)
+}

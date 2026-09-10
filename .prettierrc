@@ -11,7 +11,7 @@
 		"^.*\\.scss$",
 
 		"^@/api/(.*)$",
-		"^@/app/(.*)$",
+		"^@/app/[locale]/(.*)$",
 		"^@/components/(.*)$",
 		"^@/config/(.*)$",
 		"^@/constants/(.*)$",

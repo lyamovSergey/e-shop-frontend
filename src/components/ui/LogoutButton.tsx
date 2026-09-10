@@ -2,13 +2,14 @@
 
 import { useQueryClient } from '@tanstack/react-query'
 import { LogOut } from 'lucide-react'
-import { useRouter } from 'next/navigation'
 
 import { Button } from '@/components/ui/button'
 
 import { PUBLIC_URL } from '@/config/url.config'
 
 import { authService } from '@/services/auth/auth.service'
+
+import { useRouter } from '@/i18n/navigation'
 
 export function LogoutButton() {
 	const router = useRouter()
