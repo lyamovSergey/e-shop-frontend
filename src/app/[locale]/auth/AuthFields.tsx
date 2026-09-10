@@ -1,3 +1,4 @@
+import { useTranslations } from 'next-intl'
 import { UseFormReturn } from 'react-hook-form'
 
 import { FieldGroup } from '@/components/ui/field'
@@ -16,6 +17,7 @@ export function AuthFields({
 	isPending,
 	isReg = false
 }: AuthFieldsProps) {
+	const $t = useTranslations('Auth')
 	return (
 		<>
 			<FieldGroup>
@@ -23,24 +25,24 @@ export function AuthFields({
 					<FormTextInput
 						form={form}
 						formField='name'
-						placeholer='Enter your name'
-						title='Name'
+						placeholer={$t('name_placeholder')}
+						title={$t('name')}
 						disabled={isPending}
 					/>
 				)}
 				<FormTextInput
 					form={form}
 					formField='email'
-					placeholer='Enter your email'
-					title='Email'
+					placeholer={$t('email_placeholder')}
+					title={$t('email')}
 					type='text'
 					disabled={isPending}
 				/>
 				<FormTextInput
 					form={form}
 					formField='password'
-					placeholer='Enter your passwrod'
-					title='Password'
+					placeholer={$t('password_placeholder')}
+					title={$t('password')}
 					type='password'
 					disabled={isPending}
 				/>

@@ -1,5 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { useTranslations } from 'next-intl'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 
@@ -9,8 +10,8 @@ import { authService } from '@/services/auth/auth.service'
 
 import { EnumUserRole } from '@/shared/schemas/api/user.schema'
 import {
-	loginSchema,
-	registerSchema
+	getLoginSchema,
+	getRegisterSchema
 } from '@/shared/schemas/form-validators/auth.schema'
 import { IAuthForm } from '@/shared/types/auth.interface'
 
@@ -18,15 +19,16 @@ import { useRouter } from '@/i18n/navigation'
 
 export function useAuthForm(isReg: boolean) {
 	const queryClient = useQueryClient()
-	const formSchema = isReg ? registerSchema : loginSchema
+	const $t = useTranslations('Errors')
+	const formSchema = isReg ? getRegisterSchema($t) : getLoginSchema($t)
 	const router = useRouter()
 	const form = useForm<IAuthForm>({
 		resolver: zodResolver(formSchema),
 		mode: 'onSubmit',
 		defaultValues: {
 			name: '',
-			email: 'admin@mail.com',
-			password: '123456'
+			email: '',
+			password: ''
 		}
 	})
 	const { mutate, isPending } = useMutation({

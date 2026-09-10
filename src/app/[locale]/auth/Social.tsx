@@ -1,5 +1,7 @@
 'use client'
 
+import { useTranslations } from 'next-intl'
+
 import { Button } from '@/components/ui/button'
 
 import { SERVER_URL } from '@/config/api.config'
@@ -14,6 +16,7 @@ export default function Social({
 	disabled?: boolean
 }) {
 	const router = useRouter()
+	const $t = useTranslations('Auth')
 	return (
 		<Button
 			onClick={() => router.push(`${SERVER_URL}/auth/google`)}
@@ -21,7 +24,8 @@ export default function Social({
 			type='button'
 			disabled={disabled}
 		>
-			{isReg ? 'Registration' : 'Login'} with Google
+			{isReg ? $t('sign_up_link') : $t('sign_in_link')}{' '}
+			{$t('sign_up_vs_google')}
 		</Button>
 	)
 }

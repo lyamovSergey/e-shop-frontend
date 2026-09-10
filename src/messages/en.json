@@ -1,31 +1,27 @@
 {
   "Auth": {
-    "title": "Login to your account",
-    "description": "Enter your email below to login to your account",
+    "login_title": "Login to your account",
+    "registration_title": "Create an account",
+    "login_description": "Enter your email below to login to your account",
+    "registration_description": "Enter your email below to register new account",
     "email": "Email",
-    "password": "Password",
-    "login": "Login",
-    "signup_text": "Don't have an account?",
-    "sign_up_link": "Sign up"
-  },
-  "Registration": {
-    "title": "Create an account",
+    "email_placeholder": "Enter your email",
     "name": "Name",
-    "email": "Email",
+    "name_placeholder": "Enter your name",
     "password": "Password",
-    "login": "Sign in",
-    "confirm_password": "Confirm Password",
-    "sign_in_text": "Already have an account?",
-    "register": "Create Account"
+    "password_placeholder": "Enter your password",
+    "login_button": "Login",
+    "registration_button": "Registration",
+    "signup_text": "Don't have an account?",
+    "signin_text": "Already have an account?",
+    "sign_up_link": "Sign up",
+    "sign_in_link": "Sign in",
+    "sign_up_vs_google": "with Google"
   },
   "Errors": {
-    "email": "Email not valid",
+    "email": "Invalid email address",
     "required": "Field is required",
-    "confirm_password": "The passwords don't match",
-    "password_length": "Must be at least {num} characters long.",
-    "defaultError": "Error!"
-  },
-  "Dashboard": {
-    "title": "Dashboard"
+    "min_length": "Must be at least {num} characters long.",
+    "defaultError": "Error! Something went wrong"
   }
 }

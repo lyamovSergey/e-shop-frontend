@@ -28,15 +28,13 @@ export function Auth() {
 	return (
 		<div className={styles.wrapper}>
 			<div className={cn('flex flex-col gap-6 min-w-85')}>
-				{/* <div className='neo-base'></div> */}
-
 				<Card>
 					<CardHeader>
-						<CardTitle>{isReg ? 'Registration' : $t('title')}</CardTitle>
+						<CardTitle>
+							{isReg ? $t('registration_title') : $t('login_title')}
+						</CardTitle>
 						<CardDescription>
-							{isReg
-								? 'Enter your info to create account'
-								: 'Enter your email below to login to your account'}
+							{isReg ? $t('registration_description') : $t('login_description')}
 						</CardDescription>
 					</CardHeader>
 					<CardContent>
@@ -52,13 +50,11 @@ export function Auth() {
 										variant='neoAction'
 										disabled={isPending}
 									>
-										{isReg ? 'Registration' : 'Login'}
+										{isReg ? $t('registration_button') : $t('login_button')}
 									</Button>
 									<Social isReg={isReg} disabled={isPending} />
-									<FieldDescription className='text-center'>
-										{isReg
-											? 'Alredy have account? '
-											: `Don't have an account? `}
+									<FieldDescription className=' flex justify-center gap-2'>
+										{isReg ? $t('signin_text') : $t('signup_text')}
 										<button
 											className={cn('hover:cursor-pointer underline', {
 												'opacity-50 cursor-auto! pointer-events-none': isPending
@@ -67,7 +63,7 @@ export function Auth() {
 
 											onClick={() => setIsReg(!isReg)}
 										>
-											{isReg ? 'Sign in' : 'Sign up'}
+											{isReg ? $t('sign_in_link') : $t('sign_up_link')}
 										</button>
 									</FieldDescription>
 								</Field>
